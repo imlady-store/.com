@@ -73,9 +73,9 @@
                     <div class="text-gray-500 text-sm">ประวัติสั่งซื้อ</div>
                     <button onclick="openFullHistory()" class="mt-2 text-purple-500 text-sm font-bold hover:underline">ดูประวัติทั้งหมด</button>
                 </div>
-                <div class="cute-card p-5 text-center flex flex-col justify-center bg-green-50 cursor-pointer">
-                    <i class="fa-brands fa-line text-4xl text-green-500 mb-2"></i>
-                    <div class="text-green-600 font-bold">ติดต่อแอดมิน</div>
+                <div onclick="window.open('https://discord.gg/eDd7NdDqwv', '_blank')" class="cute-card p-5 text-center flex flex-col justify-center bg-indigo-50 cursor-pointer hover:bg-indigo-100 transition">
+                    <i class="fa-brands fa-discord text-4xl text-indigo-500 mb-2"></i>
+                    <div class="text-indigo-600 font-bold text-sm leading-tight">ติดต่อแอดมิน<br>(เปิด Ticket)</div>
                 </div>
                 <div onclick="openInbox()" class="cute-card p-5 text-center flex flex-col justify-center bg-gray-50 cursor-pointer relative hover:bg-gray-100 transition">
                     <span id="unread-badge" class="absolute top-3 right-3 bg-red-500 text-white text-xs rounded-full h-5 w-5 flex items-center justify-center hidden font-bold shadow">0</span>
@@ -153,7 +153,6 @@
 
             <div id="admin-tab-stock" class="admin-tab cute-card p-6 border-t-4 border-purple-400">
                 <h3 class="font-bold text-lg mb-4 text-purple-600">จัดการสต๊อก & ลบสินค้า</h3>
-                
                 <div class="space-y-3 mb-8 p-4 bg-gray-50 rounded-xl border border-gray-200">
                     <h4 class="font-bold text-gray-700"><i class="fa-solid fa-plus-circle text-purple-500 mr-1"></i> เพิ่มสต๊อกสินค้า</h4>
                     <label class="block text-sm text-gray-500 ml-1">เลือกสินค้าที่จะเพิ่มสต๊อก</label>
@@ -164,12 +163,10 @@
                     <textarea id="stock-codes" class="cute-input h-32 font-mono text-sm bg-white" placeholder="email:pass&#10;code1234&#10;..."></textarea>
                     <button onclick="submitAdminStock()" class="w-full bg-purple-500 text-white py-2 rounded-xl font-bold">อัปเดตเข้าสต๊อก</button>
                 </div>
-
                 <div class="p-4 bg-red-50 rounded-xl border border-red-100">
                     <h4 class="font-bold text-red-600 mb-3"><i class="fa-solid fa-trash-can mr-1"></i> ลบสินค้าออกจากระบบ</h4>
                     <p class="text-xs text-red-400 mb-3">เมื่อลบแล้วจะไม่สามารถกู้คืนได้ และสินค้าจะหายไปจากหน้าร้านทันที</p>
-                    <div id="admin-product-list" class="space-y-2 max-h-60 overflow-y-auto">
-                        </div>
+                    <div id="admin-product-list" class="space-y-2 max-h-60 overflow-y-auto"></div>
                 </div>
             </div>
 
@@ -212,7 +209,7 @@
 
     <script>
         // *** 🔴 วาง URL ที่ได้จาก Apps Script ของคุณตรงนี้ 🔴 ***
-        const API_URL = "https://script.google.com/macros/s/AKfycbwk4oivZM_oX9ua2cHSwIsXP8NNzI4cG0wdd9sW_JHeK7DQEJDdqjuTJyuAJuhc4xmI3Q/exec"; 
+        const API_URL = "YOUR_NEW_WEB_APP_URL"; 
         
         let currentUser = null; let smmDataCache = null; let globalMessages = []; let productsCache = [];
 
@@ -289,25 +286,18 @@
             }
         }
 
-        // ================= สต๊อกและการลบสินค้า (ระบบใหม่) ================= //
+        // ================= สต๊อกและการลบสินค้า ================= //
         async function loadProducts() {
             const res = await fetchGAS({ action: 'get_products' });
             if(res && res.status === 'success') {
                 productsCache = res.products;
-                
-                // โหลดหน้าร้านค้า
                 const grid = document.getElementById('product-grid'); if(grid) grid.innerHTML = '';
-                
-                // โหลดหน้าแอดมิน: Dropdown และ List ลบสินค้า
-                const adminStock = document.getElementById('stock-product-id');
-                const adminList = document.getElementById('admin-product-list');
+                const adminStock = document.getElementById('stock-product-id'); const adminList = document.getElementById('admin-product-list');
                 if(adminStock) adminStock.innerHTML = '<option value="">-- เลือกสินค้าที่จะจัดการ --</option>';
                 if(adminList) adminList.innerHTML = '';
 
                 productsCache.forEach(p => {
-                    // แอดมิน: เพิ่มใส่ Dropdown
                     if(adminStock) adminStock.innerHTML += `<option value="${p.id}">[${p.category}] ${p.name} - ${p.price}฿</option>`;
-                    // แอดมิน: เพิ่มใส่ List ให้ลบ
                     if(adminList) {
                         adminList.innerHTML += `
                             <div class="flex justify-between items-center bg-white p-3 rounded-lg shadow-sm border border-red-100">
@@ -318,12 +308,9 @@
                                 <button onclick="deleteProduct('${p.id}')" class="text-red-500 hover:text-red-700 font-bold text-xs px-3 py-1.5 bg-red-50 rounded-full transition flex-shrink-0"><i class="fa-solid fa-trash-can"></i> ลบ</button>
                             </div>`;
                     }
-
-                    // หน้าร้านค้า: วาดการ์ด
                     let buyBtn = p.type === 'game' 
                         ? `<button onclick="openGameModal('${p.name}', '${p.quantity_val} ${p.quantity_unit}', ${p.price})" class="w-full bg-pink-500 text-white font-bold py-2 rounded-full text-xs shadow-md hover:bg-pink-600 transition">เติมเกมนี้</button>`
                         : `<button onclick="showAlert('แจ้งเตือน', 'ระบบชำระเงินแอปกำลังพัฒนาค่ะ', 'info')" class="w-full bg-purple-500 text-white font-bold py-2 rounded-full text-xs shadow-md hover:bg-purple-600 transition">ซื้อแอป</button>`;
-                    
                     if(grid) {
                         grid.innerHTML += `
                             <div class="cute-card overflow-hidden text-center p-4 border border-pink-50 relative hover:-translate-y-1 transition duration-300">
@@ -342,12 +329,10 @@
             }
         }
 
-        // ฟังก์ชันลบสินค้า (สำหรับ Admin)
         async function deleteProduct(id) {
             if(confirm('คุณแน่ใจหรือไม่ว่าต้องการลบสินค้านี้? ข้อมูลจะถูกลบทันที')) {
                 const res = await fetchGAS({ action: 'admin_delete_product', product_id: id });
-                if(res && res.status==='success') { showAlert('สำเร็จ', res.message, 'success'); loadProducts(); }
-                else if(res) showAlert('ผิดพลาด', res.message, 'error');
+                if(res && res.status==='success') { showAlert('สำเร็จ', res.message, 'success'); loadProducts(); } else if(res) showAlert('ผิดพลาด', res.message, 'error');
             }
         }
 
@@ -356,14 +341,12 @@
             document.getElementById('detail-img').src = p.image || 'https://via.placeholder.com/150';
             document.getElementById('detail-category').innerText = p.category; document.getElementById('detail-name').innerText = p.name;
             document.getElementById('detail-price').innerText = `ราคา ${p.price} ฿`; document.getElementById('detail-desc').innerText = p.desc || 'ไม่มีรายละเอียดเพิ่มเติมสำหรับสินค้านี้ค่ะ';
-            
             let btnHtml = p.type === 'game' 
                 ? `<button onclick="hideModal('product-detail-modal'); openGameModal('${p.name}', '${p.quantity_val} ${p.quantity_unit}', ${p.price})" class="w-full btn-pink py-3 font-bold text-lg"><i class="fa-solid fa-cart-shopping mr-2"></i> เติมเกมนี้เลย</button>`
                 : `<button onclick="showAlert('แจ้งเตือน', 'ระบบชำระเงินแอปกำลังพัฒนาค่ะ', 'info')" class="w-full bg-purple-500 text-white font-bold py-3 rounded-full text-lg shadow-md hover:bg-purple-600"><i class="fa-solid fa-cart-shopping mr-2"></i> สั่งซื้อแอปพรีเมียม</button>`;
             document.getElementById('detail-action-btn').innerHTML = btnHtml; showModal('product-detail-modal');
         }
 
-        // --- ฟังก์ชันอื่นๆ ---
         async function openFullHistory() {
             const res = await fetchGAS({ action: 'get_full_history', username: currentUser.username });
             if(res && res.status === 'success') {
