@@ -77,30 +77,22 @@
                     <i class="fa-brands fa-line text-4xl text-green-500 mb-2"></i>
                     <div class="text-green-600 font-bold">ติดต่อแอดมิน</div>
                 </div>
-                <div onclick="openInbox()" class="cute-card p-5 text-center flex flex-col justify-center bg-gray-50 cursor-pointer relative">
+                <div onclick="openInbox()" class="cute-card p-5 text-center flex flex-col justify-center bg-gray-50 cursor-pointer relative hover:bg-gray-100 transition">
                     <span id="unread-badge" class="absolute top-3 right-3 bg-red-500 text-white text-xs rounded-full h-5 w-5 flex items-center justify-center hidden font-bold shadow">0</span>
                     <i class="fa-solid fa-envelope text-4xl text-gray-400 mb-2"></i>
                     <div class="text-gray-600 font-bold">กล่องข้อความ</div>
                 </div>
             </div>
-
             <h3 class="text-xl font-bold text-gray-800 mb-4"><i class="fa-solid fa-clock-rotate-left text-pink-400 mr-2"></i> 10 ออเดอร์ล่าสุด</h3>
             <div class="cute-card overflow-hidden overflow-x-auto">
-                <table class="w-full text-left min-w-[600px]">
-                    <thead class="bg-pink-50 text-gray-600 text-sm">
-                        <tr><th class="p-4">รายการ</th><th class="p-4">ราคา</th><th class="p-4">สถานะ</th><th class="p-4">เวลา</th></tr>
-                    </thead>
-                    <tbody id="history-table" class="text-sm border-t border-pink-50"></tbody>
-                </table>
+                <table class="w-full text-left min-w-[600px]"><thead class="bg-pink-50 text-gray-600 text-sm"><tr><th class="p-4">รายการ</th><th class="p-4">ราคา</th><th class="p-4">สถานะ</th><th class="p-4">เวลา</th></tr></thead><tbody id="history-table" class="text-sm border-t border-pink-50"></tbody></table>
             </div>
         </div>
 
         <div id="page-premium" class="page hidden fade-in">
             <h2 class="text-2xl font-bold text-pink-600 mb-6"><i class="fa-solid fa-gamepad mr-2"></i> เติมเกม & แอปพรีเมียม</h2>
             <div class="grid grid-cols-2 md:grid-cols-4 gap-4" id="product-grid">
-                <div class="col-span-full cute-card p-10 text-center text-gray-400">
-                    <i class="fa-solid fa-spinner fa-spin text-3xl mb-2"></i><p>กำลังโหลดสินค้า...</p>
-                </div>
+                <div class="col-span-full cute-card p-10 text-center text-gray-400"><i class="fa-solid fa-spinner fa-spin text-3xl mb-2"></i><p>กำลังโหลดสินค้า...</p></div>
             </div>
         </div>
 
@@ -109,26 +101,11 @@
                 <div class="md:col-span-2 cute-card p-6">
                     <h2 class="text-2xl font-bold text-pink-600 mb-4 border-b border-pink-50 pb-3"><i class="fa-solid fa-users mr-2"></i> ระบบเพิ่มยอด SMM</h2>
                     <div class="space-y-4">
-                        <div>
-                            <label class="block text-gray-600 font-medium mb-1">1. เลือกแพลตฟอร์ม</label>
-                            <select id="smm-platform" onchange="renderSMMCategories()" class="cute-input"><option value="">-- โหลดข้อมูลแพลตฟอร์ม... --</option></select>
-                        </div>
-                        <div>
-                            <label class="block text-gray-600 font-medium mb-1">2. เลือกหมวดหมู่บริการ</label>
-                            <select id="smm-category" onchange="renderSMMServices()" class="cute-input"><option value="">-- กรุณาเลือกแพลตฟอร์มก่อน --</option></select>
-                        </div>
-                        <div>
-                            <label class="block text-gray-600 font-medium mb-1">3. เลือกบริการที่ต้องการ</label>
-                            <select id="smm-service" onchange="updateSMMDetails()" class="cute-input bg-pink-50"><option value="">-- กรุณาเลือกหมวดหมู่ก่อน --</option></select>
-                        </div>
-                        <div id="smm-detail-box" class="hidden bg-blue-50 border border-blue-100 p-4 rounded-xl text-sm text-gray-600">
-                            <p id="smm-desc"></p>
-                            <p class="mt-2 font-bold text-blue-500">ขั้นต่ำ: <span id="smm-min">0</span> | สูงสุด: <span id="smm-max">0</span></p>
-                        </div>
-                        <div>
-                            <label class="block text-gray-600 font-medium mb-1">ลิงก์เป้าหมาย (URL)</label>
-                            <input type="text" id="smm-link" class="cute-input" placeholder="วางลิงก์ที่นี่...">
-                        </div>
+                        <div><label class="block text-gray-600 font-medium mb-1">1. เลือกแพลตฟอร์ม</label><select id="smm-platform" onchange="renderSMMCategories()" class="cute-input"><option value="">-- โหลดข้อมูลแพลตฟอร์ม... --</option></select></div>
+                        <div><label class="block text-gray-600 font-medium mb-1">2. เลือกหมวดหมู่บริการ</label><select id="smm-category" onchange="renderSMMServices()" class="cute-input"><option value="">-- กรุณาเลือกแพลตฟอร์มก่อน --</option></select></div>
+                        <div><label class="block text-gray-600 font-medium mb-1">3. เลือกบริการที่ต้องการ</label><select id="smm-service" onchange="updateSMMDetails()" class="cute-input bg-pink-50"><option value="">-- กรุณาเลือกหมวดหมู่ก่อน --</option></select></div>
+                        <div id="smm-detail-box" class="hidden bg-blue-50 border border-blue-100 p-4 rounded-xl text-sm text-gray-600"><p id="smm-desc"></p><p class="mt-2 font-bold text-blue-500">ขั้นต่ำ: <span id="smm-min">0</span> | สูงสุด: <span id="smm-max">0</span></p></div>
+                        <div><label class="block text-gray-600 font-medium mb-1">ลิงก์เป้าหมาย (URL)</label><input type="text" id="smm-link" class="cute-input" placeholder="วางลิงก์ที่นี่..."></div>
                         <div class="grid grid-cols-2 gap-4">
                             <div><label class="block text-gray-600 font-medium mb-1">จำนวน</label><input type="number" id="smm-qty" oninput="calculateSMMPrice()" class="cute-input"></div>
                             <div><label class="block text-gray-600 font-medium mb-1">ราคา (บาท)</label><div class="bg-gray-50 border-2 border-gray-100 rounded-xl p-3 text-pink-600 font-bold text-center"><span id="smm-price">0.00</span></div></div>
@@ -136,24 +113,19 @@
                         <button onclick="submitSMMOrder()" class="w-full btn-pink py-3 mt-2 text-lg">สั่งซื้อบริการ</button>
                     </div>
                 </div>
-
                 <div class="cute-card p-6 bg-pink-50/50">
                     <h3 class="font-bold text-pink-600 mb-3"><i class="fa-solid fa-circle-info mr-1"></i> คำเตือนสำคัญ</h3>
-                    <ul class="text-sm text-gray-600 space-y-3 list-disc pl-4">
-                        <li class="font-bold text-red-500">ตั้งค่าบัญชีเป็น "สาธารณะ"</li>
-                        <li>ห้ามเปลี่ยนชื่อผู้ใช้ขณะรอดำเนินการ</li>
-                        <li>อย่าสั่งซื้อลิงก์เดิมซ้ำ หากคำสั่งเก่ายังไม่เสร็จ</li>
-                        <li>ระบบทำงานอัตโนมัติ ไม่สามารถยกเลิกได้หากใส่ลิงก์ผิด</li>
-                    </ul>
+                    <ul class="text-sm text-gray-600 space-y-3 list-disc pl-4"><li class="font-bold text-red-500">ตั้งค่าบัญชีเป็น "สาธารณะ"</li><li>ห้ามเปลี่ยนชื่อผู้ใช้ขณะรอดำเนินการ</li><li>อย่าสั่งซื้อลิงก์เดิมซ้ำ หากคำสั่งเก่ายังไม่เสร็จ</li></ul>
                 </div>
             </div>
         </div>
 
         <div id="page-admin" class="page hidden fade-in">
             <div class="flex overflow-x-auto space-x-2 mb-6 border-b border-gray-200 pb-2">
-                <button onclick="switchAdminTab('app')" class="px-4 py-2 bg-purple-100 text-purple-700 font-bold rounded-t-xl"><i class="fa-solid fa-mobile-screen mr-1"></i> เพิ่มแอป</button>
-                <button onclick="switchAdminTab('game')" class="px-4 py-2 bg-gray-100 text-gray-500 font-bold rounded-t-xl hover:bg-gray-200"><i class="fa-solid fa-gamepad mr-1"></i> เพิ่มเติมเกม</button>
-                <button onclick="switchAdminTab('message')" class="px-4 py-2 bg-gray-100 text-gray-500 font-bold rounded-t-xl hover:bg-gray-200"><i class="fa-solid fa-paper-plane mr-1"></i> ส่งของ/ข้อความ</button>
+                <button onclick="switchAdminTab('app')" class="px-4 py-2 bg-purple-100 text-purple-700 font-bold rounded-t-xl whitespace-nowrap"><i class="fa-solid fa-mobile-screen mr-1"></i> เพิ่มแอป</button>
+                <button onclick="switchAdminTab('game')" class="px-4 py-2 bg-gray-100 text-gray-500 font-bold rounded-t-xl hover:bg-gray-200 whitespace-nowrap"><i class="fa-solid fa-gamepad mr-1"></i> เพิ่มเกม</button>
+                <button onclick="switchAdminTab('stock')" class="px-4 py-2 bg-gray-100 text-gray-500 font-bold rounded-t-xl hover:bg-gray-200 whitespace-nowrap"><i class="fa-solid fa-cubes mr-1"></i> จัดการสินค้า / สต๊อก</button>
+                <button onclick="switchAdminTab('message')" class="px-4 py-2 bg-gray-100 text-gray-500 font-bold rounded-t-xl hover:bg-gray-200 whitespace-nowrap"><i class="fa-solid fa-paper-plane mr-1"></i> ส่งข้อความ</button>
             </div>
 
             <div id="admin-tab-app" class="admin-tab active cute-card p-6 border-t-4 border-purple-400">
@@ -172,13 +144,32 @@
                 <div class="space-y-3 max-w-lg">
                     <input type="text" id="add-game-cat" class="cute-input" placeholder="ชื่อเกม (เช่น RoV, FreeFire)">
                     <input type="text" id="add-game-img" class="cute-input" placeholder="ลิงก์รูปภาพเกม">
-                    <div class="grid grid-cols-2 gap-3">
-                        <input type="number" id="add-game-qty" class="cute-input" placeholder="จำนวนที่ได้">
-                        <select id="add-game-unit" class="cute-input"><option value="คูปอง">คูปอง</option><option value="เพชร">เพชร</option><option value="หัวใจ">หัวใจ</option><option value="Robux">Robux</option></select>
-                    </div>
+                    <div class="grid grid-cols-2 gap-3"><input type="number" id="add-game-qty" class="cute-input" placeholder="จำนวนที่ได้"><select id="add-game-unit" class="cute-input"><option value="คูปอง">คูปอง</option><option value="เพชร">เพชร</option><option value="หัวใจ">หัวใจ</option><option value="Robux">Robux</option></select></div>
                     <input type="number" id="add-game-price" class="cute-input" placeholder="ราคาขาย (บาท)">
                     <textarea id="add-game-desc" class="cute-input h-20" placeholder="รายละเอียดเพิ่มเติม"></textarea>
                     <button onclick="submitAdminGame()" class="w-full bg-purple-500 text-white py-2 rounded-xl font-bold">บันทึกบริการเติมเกม</button>
+                </div>
+            </div>
+
+            <div id="admin-tab-stock" class="admin-tab cute-card p-6 border-t-4 border-purple-400">
+                <h3 class="font-bold text-lg mb-4 text-purple-600">จัดการสต๊อก & ลบสินค้า</h3>
+                
+                <div class="space-y-3 mb-8 p-4 bg-gray-50 rounded-xl border border-gray-200">
+                    <h4 class="font-bold text-gray-700"><i class="fa-solid fa-plus-circle text-purple-500 mr-1"></i> เพิ่มสต๊อกสินค้า</h4>
+                    <label class="block text-sm text-gray-500 ml-1">เลือกสินค้าที่จะเพิ่มสต๊อก</label>
+                    <select id="stock-product-id" class="cute-input font-medium text-purple-700 bg-white">
+                        <option value="">-- กำลังโหลดรายการสินค้า --</option>
+                    </select>
+                    <label class="block text-sm text-gray-500 ml-1">ใส่รหัสสินค้า (กด Enter เพื่อขึ้นบรรทัดใหม่ 1 บรรทัด = 1 รหัส)</label>
+                    <textarea id="stock-codes" class="cute-input h-32 font-mono text-sm bg-white" placeholder="email:pass&#10;code1234&#10;..."></textarea>
+                    <button onclick="submitAdminStock()" class="w-full bg-purple-500 text-white py-2 rounded-xl font-bold">อัปเดตเข้าสต๊อก</button>
+                </div>
+
+                <div class="p-4 bg-red-50 rounded-xl border border-red-100">
+                    <h4 class="font-bold text-red-600 mb-3"><i class="fa-solid fa-trash-can mr-1"></i> ลบสินค้าออกจากระบบ</h4>
+                    <p class="text-xs text-red-400 mb-3">เมื่อลบแล้วจะไม่สามารถกู้คืนได้ และสินค้าจะหายไปจากหน้าร้านทันที</p>
+                    <div id="admin-product-list" class="space-y-2 max-h-60 overflow-y-auto">
+                        </div>
                 </div>
             </div>
 
@@ -194,89 +185,42 @@
         </div>
     </div>
 
-    <div id="loading-modal" class="modal-container hidden fixed inset-0 bg-white/70 backdrop-blur-sm flex items-center justify-center z-[100]">
-        <div class="bg-white p-6 rounded-3xl shadow-xl flex flex-col items-center"><i class="fa-solid fa-spinner fa-spin text-4xl text-pink-400 mb-3"></i><p class="text-pink-600 font-bold">รอแปบนึงนะคะ...</p></div>
-    </div>
-
-    <div id="alert-modal" class="modal-container hidden fixed inset-0 bg-black/40 backdrop-blur-sm flex items-center justify-center z-[90] p-4">
-        <div class="bg-white p-8 rounded-3xl w-full max-w-sm text-center shadow-2xl">
-            <div id="alert-icon" class="text-5xl mb-4"></div><h3 id="alert-title" class="text-2xl font-bold mb-2"></h3><p id="alert-message" class="text-gray-500 mb-6"></p>
-            <button onclick="hideModal('alert-modal')" class="w-full btn-pink py-3 font-bold">ตกลง</button>
-        </div>
-    </div>
-
-    <div id="history-modal" class="modal-container hidden fixed inset-0 bg-black/40 backdrop-blur-sm flex items-center justify-center z-[80] p-4">
-        <div class="bg-white p-6 rounded-3xl w-full max-w-4xl shadow-2xl relative max-h-[90vh] flex flex-col">
-            <button onclick="hideModal('history-modal')" class="absolute top-4 right-5 text-gray-400 hover:text-pink-500"><i class="fa-solid fa-xmark text-xl"></i></button>
-            <h3 class="text-2xl font-bold mb-4 text-pink-600"><i class="fa-solid fa-clock-rotate-left mr-2"></i> ประวัติการสั่งซื้อทั้งหมด</h3>
-            <div class="overflow-y-auto flex-1 border border-gray-100 rounded-xl">
-                <table class="w-full text-left min-w-[700px]">
-                    <thead class="bg-pink-50 text-gray-600 text-sm sticky top-0">
-                        <tr><th class="p-4">รหัส</th><th class="p-4">ประเภท</th><th class="p-4">รายการ</th><th class="p-4">ราคา</th><th class="p-4">สถานะ</th><th class="p-4">วันที่</th></tr>
-                    </thead>
-                    <tbody id="full-history-table" class="text-sm">
-                        </tbody>
-                </table>
+    <div id="loading-modal" class="modal-container hidden fixed inset-0 bg-white/70 backdrop-blur-sm flex items-center justify-center z-[100]"><div class="bg-white p-6 rounded-3xl shadow-xl flex flex-col items-center"><i class="fa-solid fa-spinner fa-spin text-4xl text-pink-400 mb-3"></i><p class="text-pink-600 font-bold">รอแปบนึงนะคะ...</p></div></div>
+    <div id="alert-modal" class="modal-container hidden fixed inset-0 bg-black/40 backdrop-blur-sm flex items-center justify-center z-[90] p-4"><div class="bg-white p-8 rounded-3xl w-full max-w-sm text-center shadow-2xl"><div id="alert-icon" class="text-5xl mb-4"></div><h3 id="alert-title" class="text-2xl font-bold mb-2"></h3><p id="alert-message" class="text-gray-500 mb-6"></p><button onclick="hideModal('alert-modal')" class="w-full btn-pink py-3 font-bold">ตกลง</button></div></div>
+    
+    <div id="product-detail-modal" class="modal-container hidden fixed inset-0 bg-black/40 backdrop-blur-sm flex items-center justify-center z-[80] p-4">
+        <div class="bg-white p-6 rounded-3xl w-full max-w-sm shadow-2xl relative">
+            <button onclick="hideModal('product-detail-modal')" class="absolute top-4 right-5 text-gray-400 hover:text-pink-500"><i class="fa-solid fa-xmark text-xl"></i></button>
+            <div class="text-center mb-4 mt-2">
+                <img id="detail-img" src="" class="w-28 h-28 mx-auto rounded-2xl object-cover shadow-md mb-3 border-2 border-pink-100">
+                <div id="detail-category" class="text-xs text-pink-500 font-bold mb-1"></div>
+                <h3 id="detail-name" class="text-xl font-bold text-gray-800 leading-tight"></h3>
+                <div id="detail-price" class="text-lg font-bold text-pink-600 mt-2 bg-pink-50 inline-block px-4 py-1 rounded-full border border-pink-100"></div>
             </div>
+            <div class="bg-gray-50 rounded-xl p-4 mb-4 text-sm text-gray-600 whitespace-pre-wrap max-h-32 overflow-y-auto border border-gray-100" id="detail-desc"></div>
+            <div id="detail-action-btn"></div>
         </div>
     </div>
 
-    <div id="inbox-modal" class="modal-container hidden fixed inset-0 bg-black/40 backdrop-blur-sm flex items-center justify-center z-[80] p-4">
-        <div class="bg-white p-6 rounded-3xl w-full max-w-md shadow-2xl relative max-h-[90vh] flex flex-col">
-            <button onclick="hideModal('inbox-modal')" class="absolute top-4 right-5 text-gray-400 hover:text-pink-500"><i class="fa-solid fa-xmark text-xl"></i></button>
-            <h3 class="text-2xl font-bold mb-4 text-pink-600"><i class="fa-solid fa-envelope-open-text mr-2"></i> กล่องข้อความ</h3>
-            <div id="inbox-list" class="overflow-y-auto flex-1 space-y-3">
-                </div>
-        </div>
-    </div>
-
-    <div id="read-msg-modal" class="modal-container hidden fixed inset-0 bg-black/40 backdrop-blur-sm flex items-center justify-center z-[90] p-4">
-        <div class="bg-white p-8 rounded-3xl w-full max-w-sm shadow-2xl relative">
-            <button onclick="hideModal('read-msg-modal')" class="absolute top-4 right-5 text-gray-400 hover:text-pink-500"><i class="fa-solid fa-xmark text-xl"></i></button>
-            <h3 id="read-msg-title" class="text-xl font-bold mb-2 text-pink-600">หัวข้อข้อความ</h3>
-            <p id="read-msg-date" class="text-xs text-gray-400 mb-4 pb-2 border-b"></p>
-            <div id="read-msg-detail" class="text-gray-700 text-sm whitespace-pre-wrap mb-6">รายละเอียด...</div>
-            <button onclick="hideModal('read-msg-modal')" class="w-full btn-pink py-2 font-bold">ปิด</button>
-        </div>
-    </div>
-
-    <div id="game-modal" class="modal-container hidden fixed inset-0 bg-black/40 backdrop-blur-sm flex items-center justify-center z-[80] p-4">
-        <div class="bg-white p-8 rounded-3xl w-full max-w-sm shadow-2xl relative">
-            <button onclick="hideModal('game-modal')" class="absolute top-4 right-5 text-gray-400"><i class="fa-solid fa-xmark text-xl"></i></button>
-            <h3 class="text-xl font-bold mb-2 text-center text-pink-600"><i class="fa-solid fa-gamepad"></i> กรอกข้อมูลตัวละคร</h3>
-            <p id="game-modal-desc" class="text-center text-sm text-gray-500 mb-4 bg-pink-50 p-2 rounded-xl font-bold"></p>
-            <input type="text" id="game-uid" class="cute-input mb-4 text-center font-bold text-lg" placeholder="กรอก UID / OpenID ที่นี่">
-            <input type="hidden" id="game-temp-data">
-            <button onclick="confirmGameOrder()" class="w-full btn-pink py-3 font-bold">ยืนยันการสั่งซื้อ</button>
-        </div>
-    </div>
-
-    <div id="login-modal" class="modal-container hidden fixed inset-0 bg-black/40 backdrop-blur-sm flex items-center justify-center z-[80] p-4">
-        <div class="bg-white p-8 rounded-3xl w-full max-w-sm relative"><button onclick="hideModal('login-modal')" class="absolute top-4 right-5 text-gray-400"><i class="fa-solid fa-xmark"></i></button><h3 class="text-2xl font-bold mb-6 text-center">เข้าสู่ระบบ</h3><input type="text" id="login-user" class="cute-input mb-3" placeholder="Username"><input type="password" id="login-pass" class="cute-input mb-4" placeholder="Password"><button onclick="submitLogin()" class="w-full btn-pink py-3 font-bold">ล็อคอิน</button></div>
-    </div>
-
-    <div id="register-modal" class="modal-container hidden fixed inset-0 bg-black/40 backdrop-blur-sm flex items-center justify-center z-[80] p-4">
-        <div class="bg-white p-8 rounded-3xl w-full max-w-md relative max-h-[90vh] overflow-y-auto"><button onclick="hideModal('register-modal')" class="absolute top-4 right-5 text-gray-400"><i class="fa-solid fa-xmark"></i></button><h3 class="text-2xl font-bold mb-4 text-center">สมัครสมาชิก</h3><input type="text" id="reg-user" class="cute-input mb-3" placeholder="Username"><input type="email" id="reg-email" class="cute-input mb-3" placeholder="Email"><input type="tel" id="reg-phone" class="cute-input mb-3" placeholder="Phone"><input type="password" id="reg-pass" class="cute-input mb-3" placeholder="Password"><button onclick="submitRegister()" class="w-full btn-pink py-3 font-bold mt-2">ยืนยัน</button></div>
-    </div>
-
-    <div id="topup-modal" class="modal-container hidden fixed inset-0 bg-black/40 backdrop-blur-sm flex items-center justify-center z-[80] p-4">
-        <div class="bg-white p-8 rounded-3xl w-full max-w-sm relative"><button onclick="hideModal('topup-modal')" class="absolute top-4 right-5 text-gray-400"><i class="fa-solid fa-xmark"></i></button><h3 class="text-xl font-bold mb-4 text-center">แจ้งโอนเงิน</h3><input type="number" id="topup-amount" class="cute-input mb-3" placeholder="ยอดเงินโอน"><input type="text" id="topup-ref" maxlength="6" class="cute-input mb-3" placeholder="เลขสลิป 6 ตัวท้าย"><input type="file" id="topup-file" class="w-full mb-4 p-2 border-2 border-dashed rounded-xl"><button onclick="submitTopup()" class="w-full btn-pink py-3 font-bold">ส่งหลักฐาน</button></div>
-    </div>
+    <div id="history-modal" class="modal-container hidden fixed inset-0 bg-black/40 backdrop-blur-sm flex items-center justify-center z-[80] p-4"><div class="bg-white p-6 rounded-3xl w-full max-w-4xl shadow-2xl relative max-h-[90vh] flex flex-col"><button onclick="hideModal('history-modal')" class="absolute top-4 right-5 text-gray-400 hover:text-pink-500"><i class="fa-solid fa-xmark text-xl"></i></button><h3 class="text-2xl font-bold mb-4 text-pink-600"><i class="fa-solid fa-clock-rotate-left mr-2"></i> ประวัติการสั่งซื้อทั้งหมด</h3><div class="overflow-y-auto flex-1 border border-gray-100 rounded-xl"><table class="w-full text-left min-w-[700px]"><thead class="bg-pink-50 text-gray-600 text-sm sticky top-0"><tr><th class="p-4">รหัส</th><th class="p-4">ประเภท</th><th class="p-4">รายการ</th><th class="p-4">ราคา</th><th class="p-4">สถานะ</th><th class="p-4">วันที่</th></tr></thead><tbody id="full-history-table" class="text-sm"></tbody></table></div></div></div>
+    <div id="inbox-modal" class="modal-container hidden fixed inset-0 bg-black/40 backdrop-blur-sm flex items-center justify-center z-[80] p-4"><div class="bg-white p-6 rounded-3xl w-full max-w-md shadow-2xl relative max-h-[90vh] flex flex-col"><button onclick="hideModal('inbox-modal')" class="absolute top-4 right-5 text-gray-400 hover:text-pink-500"><i class="fa-solid fa-xmark text-xl"></i></button><h3 class="text-2xl font-bold mb-4 text-pink-600"><i class="fa-solid fa-envelope-open-text mr-2"></i> กล่องข้อความ</h3><div id="inbox-list" class="overflow-y-auto flex-1 space-y-3"></div></div></div>
+    <div id="read-msg-modal" class="modal-container hidden fixed inset-0 bg-black/40 backdrop-blur-sm flex items-center justify-center z-[90] p-4"><div class="bg-white p-8 rounded-3xl w-full max-w-sm shadow-2xl relative"><button onclick="hideModal('read-msg-modal')" class="absolute top-4 right-5 text-gray-400 hover:text-pink-500"><i class="fa-solid fa-xmark text-xl"></i></button><h3 id="read-msg-title" class="text-xl font-bold mb-2 text-pink-600"></h3><p id="read-msg-date" class="text-xs text-gray-400 mb-4 pb-2 border-b"></p><div id="read-msg-detail" class="text-gray-700 text-sm whitespace-pre-wrap mb-6"></div><button onclick="hideModal('read-msg-modal')" class="w-full btn-pink py-2 font-bold">ปิด</button></div></div>
+    <div id="game-modal" class="modal-container hidden fixed inset-0 bg-black/40 backdrop-blur-sm flex items-center justify-center z-[80] p-4"><div class="bg-white p-8 rounded-3xl w-full max-w-sm shadow-2xl relative"><button onclick="hideModal('game-modal')" class="absolute top-4 right-5 text-gray-400"><i class="fa-solid fa-xmark text-xl"></i></button><h3 class="text-xl font-bold mb-2 text-center text-pink-600"><i class="fa-solid fa-gamepad"></i> กรอกข้อมูลตัวละคร</h3><p id="game-modal-desc" class="text-center text-sm text-gray-500 mb-4 bg-pink-50 p-2 rounded-xl font-bold"></p><input type="text" id="game-uid" class="cute-input mb-4 text-center font-bold text-lg" placeholder="กรอก UID / OpenID ที่นี่"><input type="hidden" id="game-temp-data"><button onclick="confirmGameOrder()" class="w-full btn-pink py-3 font-bold">ยืนยันการสั่งซื้อ</button></div></div>
+    <div id="login-modal" class="modal-container hidden fixed inset-0 bg-black/40 backdrop-blur-sm flex items-center justify-center z-[80] p-4"><div class="bg-white p-8 rounded-3xl w-full max-w-sm relative"><button onclick="hideModal('login-modal')" class="absolute top-4 right-5 text-gray-400"><i class="fa-solid fa-xmark"></i></button><h3 class="text-2xl font-bold mb-6 text-center">เข้าสู่ระบบ</h3><input type="text" id="login-user" class="cute-input mb-3" placeholder="Username"><input type="password" id="login-pass" class="cute-input mb-4" placeholder="Password"><button onclick="submitLogin()" class="w-full btn-pink py-3 font-bold">ล็อคอิน</button></div></div>
+    <div id="register-modal" class="modal-container hidden fixed inset-0 bg-black/40 backdrop-blur-sm flex items-center justify-center z-[80] p-4"><div class="bg-white p-8 rounded-3xl w-full max-w-md relative max-h-[90vh] overflow-y-auto"><button onclick="hideModal('register-modal')" class="absolute top-4 right-5 text-gray-400"><i class="fa-solid fa-xmark"></i></button><h3 class="text-2xl font-bold mb-4 text-center">สมัครสมาชิก</h3><input type="text" id="reg-user" class="cute-input mb-3" placeholder="Username"><input type="email" id="reg-email" class="cute-input mb-3" placeholder="Email"><input type="tel" id="reg-phone" class="cute-input mb-3" placeholder="Phone"><input type="password" id="reg-pass" class="cute-input mb-3" placeholder="Password"><button onclick="submitRegister()" class="w-full btn-pink py-3 font-bold mt-2">ยืนยัน</button></div></div>
+    <div id="topup-modal" class="modal-container hidden fixed inset-0 bg-black/40 backdrop-blur-sm flex items-center justify-center z-[80] p-4"><div class="bg-white p-8 rounded-3xl w-full max-w-sm relative"><button onclick="hideModal('topup-modal')" class="absolute top-4 right-5 text-gray-400"><i class="fa-solid fa-xmark"></i></button><h3 class="text-xl font-bold mb-4 text-center">แจ้งโอนเงิน</h3><input type="number" id="topup-amount" class="cute-input mb-3" placeholder="ยอดเงินโอน"><input type="text" id="topup-ref" maxlength="6" class="cute-input mb-3" placeholder="เลขสลิป 6 ตัวท้าย"><input type="file" id="topup-file" class="w-full mb-4 p-2 border-2 border-dashed rounded-xl"><button onclick="submitTopup()" class="w-full btn-pink py-3 font-bold">ส่งหลักฐาน</button></div></div>
 
     <script>
-        // *** ใส่ URL ของ Google Apps Script ที่นี่ ***
+        // *** 🔴 วาง URL ที่ได้จาก Apps Script ของคุณตรงนี้ 🔴 ***
         const API_URL = "https://script.google.com/macros/s/AKfycbwk4oivZM_oX9ua2cHSwIsXP8NNzI4cG0wdd9sW_JHeK7DQEJDdqjuTJyuAJuhc4xmI3Q/exec"; 
         
-        let currentUser = null;
-        let smmDataCache = null; 
-        let globalMessages = [];
+        let currentUser = null; let smmDataCache = null; let globalMessages = []; let productsCache = [];
 
         async function fetchGAS(payload) {
             showModal('loading-modal');
             try {
                 const response = await fetch(API_URL, { method: 'POST', body: JSON.stringify(payload) });
-                const result = await response.json();
-                hideModal('loading-modal'); return result;
+                const result = await response.json(); hideModal('loading-modal'); return result;
             } catch (err) { hideModal('loading-modal'); showAlert('ขัดข้อง', 'เชื่อมต่อเซิร์ฟเวอร์ไม่ได้', 'error'); return null; }
         }
 
@@ -285,43 +229,32 @@
         function closeAllModals() { document.querySelectorAll('.modal-container').forEach(el => el.classList.add('hidden')); hideModal('loading-modal'); }
         function showAlert(title, message, type='info') {
             document.getElementById('alert-title').innerText = title; document.getElementById('alert-message').innerText = message;
-            const icon = document.getElementById('alert-icon');
-            icon.innerHTML = type==='error'?'<i class="fa-solid fa-circle-xmark text-red-400"></i>':type==='success'?'<i class="fa-solid fa-circle-check text-green-400"></i>':'<i class="fa-solid fa-bell text-pink-400"></i>';
+            document.getElementById('alert-icon').innerHTML = type==='error'?'<i class="fa-solid fa-circle-xmark text-red-400"></i>':type==='success'?'<i class="fa-solid fa-circle-check text-green-400"></i>':'<i class="fa-solid fa-bell text-pink-400"></i>';
             showModal('alert-modal');
         }
 
         function navigate(pageId) {
             closeAllModals(); 
-            if (!currentUser && pageId !== 'guest') pageId = 'guest'; 
-            else if (currentUser && pageId === 'guest') pageId = 'dashboard';
-
+            if (!currentUser && pageId !== 'guest') pageId = 'guest'; else if (currentUser && pageId === 'guest') pageId = 'dashboard';
             document.querySelectorAll('.page').forEach(el => { el.classList.add('hidden'); el.classList.remove('flex', 'block'); });
-            const targetPage = document.getElementById('page-' + pageId);
-            targetPage.classList.remove('hidden');
+            const targetPage = document.getElementById('page-' + pageId); targetPage.classList.remove('hidden');
             if(pageId === 'guest') targetPage.classList.add('flex'); else targetPage.classList.add('block');
             
             if (pageId !== 'guest') {
                 document.querySelectorAll('.menu-btn').forEach(btn => { btn.classList.remove('active', 'text-pink-600', 'bg-pink-100'); btn.classList.add('text-gray-500'); });
-                const act = document.querySelector(`.menu-btn[data-target="${pageId}"]`);
-                if(act) { act.classList.remove('text-gray-500'); act.classList.add('active', 'text-pink-600', 'bg-pink-100'); }
+                const act = document.querySelector(`.menu-btn[data-target="${pageId}"]`); if(act) { act.classList.remove('text-gray-500'); act.classList.add('active', 'text-pink-600', 'bg-pink-100'); }
             }
-
-            if(pageId === 'dashboard') loadDashboard();
-            if(pageId === 'premium' || pageId === 'admin') loadProducts();
-            if(pageId === 'smm') initializeSMM();
+            if(pageId === 'dashboard') loadDashboard(); if(pageId === 'premium' || pageId === 'admin') loadProducts(); if(pageId === 'smm') initializeSMM();
         }
 
         function checkLoginState() {
             const saved = localStorage.getItem('imlady_session');
             if (saved) {
                 currentUser = JSON.parse(saved);
-                document.getElementById('nav-guest').classList.add('hidden');
-                document.getElementById('nav-user').classList.remove('hidden');
-                document.getElementById('main-menu').classList.remove('hidden');
+                document.getElementById('nav-guest').classList.add('hidden'); document.getElementById('nav-user').classList.remove('hidden'); document.getElementById('main-menu').classList.remove('hidden');
                 if(currentUser.role === 'admin') document.getElementById('menu-admin').classList.remove('hidden');
                 document.getElementById('nav-credit').innerText = currentUser.credit.toFixed(2);
-                navigate('dashboard');
-                fetchInboxData(); // โหลดจำนวนข้อความเมื่อล็อกอิน
+                navigate('dashboard'); fetchInboxData();
             } else logout(false);
         }
 
@@ -331,116 +264,151 @@
             const u = document.getElementById('login-user').value, p = document.getElementById('login-pass').value;
             if(!u || !p) return showAlert('ผิดพลาด', 'กรอกข้อมูลให้ครบนะคะ', 'error');
             const res = await fetchGAS({ action: 'login', username: u, password: p });
-            if(res && res.status === 'success') { localStorage.setItem('imlady_session', JSON.stringify({username: res.user.username, credit: res.user.credit, role: res.user.role})); closeAllModals(); checkLoginState(); }
-            else if(res) showAlert('อุ๊ปส์!', res.message, 'error');
+            if(res && res.status === 'success') { localStorage.setItem('imlady_session', JSON.stringify({username: res.user.username, credit: res.user.credit, role: res.user.role})); closeAllModals(); checkLoginState(); } else if(res) showAlert('อุ๊ปส์!', res.message, 'error');
         }
 
         async function submitRegister() {
             const u=document.getElementById('reg-user').value, e=document.getElementById('reg-email').value, ph=document.getElementById('reg-phone').value, p=document.getElementById('reg-pass').value;
             if(!u||!e||!ph||!p) return showAlert('ผิดพลาด', 'กรอกข้อมูลให้ครบนะคะ', 'error');
             const res = await fetchGAS({ action: 'register', username: u, email: e, phone: ph, password: p });
-            if(res && res.status === 'success') { closeAllModals(); showAlert('สำเร็จ!', res.message, 'success'); setTimeout(()=>showModal('login-modal'), 1500); }
-            else if(res) showAlert('ผิดพลาด', res.message, 'error');
+            if(res && res.status === 'success') { closeAllModals(); showAlert('สำเร็จ!', res.message, 'success'); setTimeout(()=>showModal('login-modal'), 1500); } else if(res) showAlert('ผิดพลาด', res.message, 'error');
         }
 
         async function loadDashboard() {
             if (!currentUser) return;
             const res = await fetchGAS({ action: 'get_dashboard', username: currentUser.username });
             if (res && res.status === 'success') {
-                document.getElementById('dash-credit').innerText = res.stats.balance.toFixed(2);
-                document.getElementById('nav-credit').innerText = res.stats.balance.toFixed(2);
+                document.getElementById('dash-credit').innerText = res.stats.balance.toFixed(2); document.getElementById('nav-credit').innerText = res.stats.balance.toFixed(2);
                 currentUser.credit = res.stats.balance; localStorage.setItem('imlady_session', JSON.stringify(currentUser));
-                
                 const tbody = document.getElementById('history-table'); tbody.innerHTML = '';
                 if(res.history.length === 0) tbody.innerHTML = '<tr><td colspan="4" class="p-4 text-center text-gray-400">ยังไม่มีประวัติ</td></tr>';
                 else res.history.forEach(h => {
                     let st = h.status.includes('สำเร็จ')?'text-green-500':(h.status.includes('ยกเลิก')?'text-red-500':'text-yellow-500');
                     tbody.innerHTML += `<tr class="border-b border-pink-50"><td class="p-4 text-xs font-bold">${h.detail}</td><td class="p-4 font-bold text-pink-500">${h.price}฿</td><td class="p-4 font-bold ${st}">${h.status}</td><td class="p-4 text-xs text-gray-400">${h.date.split(' ')[0]}</td></tr>`;
-                });
-                fetchInboxData(); // อัปเดตแจ้งเตือนเสมอเมื่อรีเฟรชแดชบอร์ด
+                }); fetchInboxData();
             }
         }
 
-        // --- ระบบประวัติแบบเต็ม (History) ---
+        // ================= สต๊อกและการลบสินค้า (ระบบใหม่) ================= //
+        async function loadProducts() {
+            const res = await fetchGAS({ action: 'get_products' });
+            if(res && res.status === 'success') {
+                productsCache = res.products;
+                
+                // โหลดหน้าร้านค้า
+                const grid = document.getElementById('product-grid'); if(grid) grid.innerHTML = '';
+                
+                // โหลดหน้าแอดมิน: Dropdown และ List ลบสินค้า
+                const adminStock = document.getElementById('stock-product-id');
+                const adminList = document.getElementById('admin-product-list');
+                if(adminStock) adminStock.innerHTML = '<option value="">-- เลือกสินค้าที่จะจัดการ --</option>';
+                if(adminList) adminList.innerHTML = '';
+
+                productsCache.forEach(p => {
+                    // แอดมิน: เพิ่มใส่ Dropdown
+                    if(adminStock) adminStock.innerHTML += `<option value="${p.id}">[${p.category}] ${p.name} - ${p.price}฿</option>`;
+                    // แอดมิน: เพิ่มใส่ List ให้ลบ
+                    if(adminList) {
+                        adminList.innerHTML += `
+                            <div class="flex justify-between items-center bg-white p-3 rounded-lg shadow-sm border border-red-100">
+                                <div class="truncate pr-2">
+                                    <span class="text-[10px] bg-gray-100 px-2 py-0.5 rounded text-gray-500 mr-1">${p.category}</span>
+                                    <span class="font-bold text-gray-800 text-sm">${p.name}</span>
+                                </div>
+                                <button onclick="deleteProduct('${p.id}')" class="text-red-500 hover:text-red-700 font-bold text-xs px-3 py-1.5 bg-red-50 rounded-full transition flex-shrink-0"><i class="fa-solid fa-trash-can"></i> ลบ</button>
+                            </div>`;
+                    }
+
+                    // หน้าร้านค้า: วาดการ์ด
+                    let buyBtn = p.type === 'game' 
+                        ? `<button onclick="openGameModal('${p.name}', '${p.quantity_val} ${p.quantity_unit}', ${p.price})" class="w-full bg-pink-500 text-white font-bold py-2 rounded-full text-xs shadow-md hover:bg-pink-600 transition">เติมเกมนี้</button>`
+                        : `<button onclick="showAlert('แจ้งเตือน', 'ระบบชำระเงินแอปกำลังพัฒนาค่ะ', 'info')" class="w-full bg-purple-500 text-white font-bold py-2 rounded-full text-xs shadow-md hover:bg-purple-600 transition">ซื้อแอป</button>`;
+                    
+                    if(grid) {
+                        grid.innerHTML += `
+                            <div class="cute-card overflow-hidden text-center p-4 border border-pink-50 relative hover:-translate-y-1 transition duration-300">
+                                <img src="${p.image || 'https://via.placeholder.com/150'}" class="w-20 h-20 mx-auto rounded-2xl mb-3 object-cover shadow-sm cursor-pointer" onclick="openProductDetail('${p.id}')">
+                                <div class="text-xs text-pink-500 font-bold mb-1">${p.category}</div>
+                                <div class="font-bold text-gray-700 truncate mb-1 cursor-pointer hover:text-pink-500" onclick="openProductDetail('${p.id}')">${p.name}</div>
+                                <div class="text-xs text-gray-400 mb-3">${p.type === 'game' ? `รับ ${p.quantity_val} ${p.quantity_unit}` : 'แอปพรีเมียม'}</div>
+                                <div class="flex space-x-2">
+                                    <button onclick="openProductDetail('${p.id}')" class="w-full bg-pink-50 text-pink-600 font-bold py-2 rounded-full text-xs hover:bg-pink-100 transition">รายละเอียด</button>
+                                    ${buyBtn}
+                                </div>
+                            </div>`;
+                    }
+                });
+                if(adminList && adminList.innerHTML === '') adminList.innerHTML = '<div class="text-sm text-gray-400 text-center py-4">ยังไม่มีสินค้าในระบบ</div>';
+            }
+        }
+
+        // ฟังก์ชันลบสินค้า (สำหรับ Admin)
+        async function deleteProduct(id) {
+            if(confirm('คุณแน่ใจหรือไม่ว่าต้องการลบสินค้านี้? ข้อมูลจะถูกลบทันที')) {
+                const res = await fetchGAS({ action: 'admin_delete_product', product_id: id });
+                if(res && res.status==='success') { showAlert('สำเร็จ', res.message, 'success'); loadProducts(); }
+                else if(res) showAlert('ผิดพลาด', res.message, 'error');
+            }
+        }
+
+        function openProductDetail(id) {
+            const p = productsCache.find(x => x.id === id); if(!p) return;
+            document.getElementById('detail-img').src = p.image || 'https://via.placeholder.com/150';
+            document.getElementById('detail-category').innerText = p.category; document.getElementById('detail-name').innerText = p.name;
+            document.getElementById('detail-price').innerText = `ราคา ${p.price} ฿`; document.getElementById('detail-desc').innerText = p.desc || 'ไม่มีรายละเอียดเพิ่มเติมสำหรับสินค้านี้ค่ะ';
+            
+            let btnHtml = p.type === 'game' 
+                ? `<button onclick="hideModal('product-detail-modal'); openGameModal('${p.name}', '${p.quantity_val} ${p.quantity_unit}', ${p.price})" class="w-full btn-pink py-3 font-bold text-lg"><i class="fa-solid fa-cart-shopping mr-2"></i> เติมเกมนี้เลย</button>`
+                : `<button onclick="showAlert('แจ้งเตือน', 'ระบบชำระเงินแอปกำลังพัฒนาค่ะ', 'info')" class="w-full bg-purple-500 text-white font-bold py-3 rounded-full text-lg shadow-md hover:bg-purple-600"><i class="fa-solid fa-cart-shopping mr-2"></i> สั่งซื้อแอปพรีเมียม</button>`;
+            document.getElementById('detail-action-btn').innerHTML = btnHtml; showModal('product-detail-modal');
+        }
+
+        // --- ฟังก์ชันอื่นๆ ---
         async function openFullHistory() {
             const res = await fetchGAS({ action: 'get_full_history', username: currentUser.username });
             if(res && res.status === 'success') {
                 const tbody = document.getElementById('full-history-table'); tbody.innerHTML = '';
                 if(res.history.length === 0) { tbody.innerHTML = '<tr><td colspan="6" class="p-8 text-center text-gray-400">ยังไม่มีประวัติการสั่งซื้อใดๆ</td></tr>'; }
-                else {
-                    res.history.forEach(h => {
+                else { res.history.forEach(h => {
                         let st = h.status.includes('สำเร็จ')?'bg-green-100 text-green-600':(h.status.includes('ยกเลิก')?'bg-red-100 text-red-600':'bg-yellow-100 text-yellow-600');
-                        tbody.innerHTML += `
-                            <tr class="border-b border-pink-50 hover:bg-pink-50/50">
-                                <td class="p-4 text-xs text-gray-400">${h.id}</td>
-                                <td class="p-4 text-xs"><span class="bg-gray-100 px-2 py-1 rounded">${h.type}</span></td>
-                                <td class="p-4 text-sm max-w-[200px] truncate">${h.detail} <br><span class="text-xs text-gray-400">เป้าหมาย/UID: ${h.uid}</span></td>
-                                <td class="p-4 font-bold text-pink-500">${h.price}฿</td>
-                                <td class="p-4"><span class="px-2 py-1 rounded-full text-xs font-bold ${st}">${h.status}</span></td>
-                                <td class="p-4 text-xs text-gray-500">${h.date}</td>
-                            </tr>`;
-                    });
-                }
-                showModal('history-modal');
+                        tbody.innerHTML += `<tr class="border-b border-pink-50 hover:bg-pink-50/50"><td class="p-4 text-xs text-gray-400">${h.id}</td><td class="p-4 text-xs"><span class="bg-gray-100 px-2 py-1 rounded">${h.type}</span></td><td class="p-4 text-sm max-w-[200px] truncate">${h.detail} <br><span class="text-xs text-gray-400">เป้าหมาย: ${h.uid}</span></td><td class="p-4 font-bold text-pink-500">${h.price}฿</td><td class="p-4"><span class="px-2 py-1 rounded-full text-xs font-bold ${st}">${h.status}</span></td><td class="p-4 text-xs text-gray-500">${h.date}</td></tr>`;
+                    }); } showModal('history-modal');
             }
         }
 
-        // --- ระบบกล่องข้อความ (Inbox) ---
         async function fetchInboxData() {
             if(!currentUser) return;
             const res = await fetchGAS({ action: 'get_inbox', username: currentUser.username });
             if(res && res.status === 'success') {
-                globalMessages = res.messages;
-                const badge = document.getElementById('unread-badge');
-                if(res.unread > 0) { badge.innerText = res.unread; badge.classList.remove('hidden'); }
-                else badge.classList.add('hidden');
+                globalMessages = res.messages; const badge = document.getElementById('unread-badge');
+                if(res.unread > 0) { badge.innerText = res.unread; badge.classList.remove('hidden'); } else badge.classList.add('hidden');
             }
         }
 
         function openInbox() {
             const list = document.getElementById('inbox-list'); list.innerHTML = '';
             if(globalMessages.length === 0) { list.innerHTML = '<div class="text-center text-gray-400 py-10">ยังไม่มีข้อความค่ะ</div>'; }
-            else {
-                globalMessages.forEach(msg => {
-                    let dot = msg.is_read ? '' : '<div class="w-3 h-3 bg-red-500 rounded-full shrink-0"></div>';
-                    let bg = msg.is_read ? 'bg-gray-50' : 'bg-pink-50 border-pink-200';
-                    list.innerHTML += `
-                        <div onclick="viewMessage('${msg.id}')" class="p-4 border rounded-xl cursor-pointer hover:bg-pink-100 transition flex items-center justify-between ${bg}">
-                            <div class="pr-3">
-                                <h4 class="font-bold text-gray-800 text-sm truncate w-56">${msg.title}</h4>
-                                <p class="text-xs text-gray-500">${msg.date}</p>
-                            </div>
-                            ${dot}
-                        </div>`;
-                });
-            }
-            showModal('inbox-modal');
+            else { globalMessages.forEach(msg => {
+                    let dot = msg.is_read ? '' : '<div class="w-3 h-3 bg-red-500 rounded-full shrink-0"></div>'; let bg = msg.is_read ? 'bg-gray-50' : 'bg-pink-50 border border-pink-200';
+                    list.innerHTML += `<div onclick="viewMessage('${msg.id}')" class="p-4 rounded-xl cursor-pointer hover:bg-pink-100 transition flex items-center justify-between ${bg}"><div class="pr-3"><h4 class="font-bold text-gray-800 text-sm truncate w-64">${msg.title}</h4><p class="text-xs text-gray-500">${msg.date}</p></div>${dot}</div>`;
+                }); } showModal('inbox-modal');
         }
 
         async function viewMessage(id) {
             const msg = globalMessages.find(m => m.id === id);
             if(msg) {
-                document.getElementById('read-msg-title').innerText = msg.title;
-                document.getElementById('read-msg-date').innerText = msg.date;
-                document.getElementById('read-msg-detail').innerText = msg.detail;
-                showModal('read-msg-modal');
-                
-                if(!msg.is_read) {
-                    await fetchGAS({ action: 'read_message', msg_id: id });
-                    fetchInboxData(); // อัปเดตสถานะหลังอ่าน
-                }
+                document.getElementById('read-msg-title').innerText = msg.title; document.getElementById('read-msg-date').innerText = msg.date; document.getElementById('read-msg-detail').innerText = msg.detail; showModal('read-msg-modal');
+                if(!msg.is_read) { await fetchGAS({ action: 'read_message', msg_id: id }); fetchInboxData(); }
             }
         }
 
-        // --- ระบบเติมเงินและบริการต่างๆ (โค้ดคงเดิม) ---
         async function submitTopup() {
             const amt = document.getElementById('topup-amount').value, ref = document.getElementById('topup-ref').value, file = document.getElementById('topup-file').files[0];
             if(!amt || !ref || !file) return showAlert('ผิดพลาด', 'กรอกยอด เลขอ้างอิง และแนบสลิปให้ครบนะคะ', 'error');
             const reader = new FileReader();
             reader.onload = async function() {
                 const res = await fetchGAS({ action: 'topup', username: currentUser.username, amount: amt, ref_code: ref, file: reader.result });
-                if(res && res.status === 'success') { closeAllModals(); showAlert('สำเร็จ!', res.message, 'success'); }
-                else if(res) showAlert('ผิดพลาด', res.message, 'error');
+                if(res && res.status === 'success') { closeAllModals(); showAlert('สำเร็จ!', res.message, 'success'); } else if(res) showAlert('ผิดพลาด', res.message, 'error');
             }; reader.readAsDataURL(file);
         }
 
@@ -448,8 +416,7 @@
             if(!smmDataCache) {
                 const res = await fetchGAS({ action: 'get_smm' });
                 if(res && res.status === 'success') {
-                    smmDataCache = res.data;
-                    const platSel = document.getElementById('smm-platform'); platSel.innerHTML = '<option value="">-- เลือกแพลตฟอร์ม --</option>';
+                    smmDataCache = res.data; const platSel = document.getElementById('smm-platform'); platSel.innerHTML = '<option value="">-- เลือกแพลตฟอร์ม --</option>';
                     Object.keys(smmDataCache).forEach(k => { platSel.innerHTML += `<option value="${k}">${k.toUpperCase()}</option>`; });
                 }
             }
@@ -470,78 +437,41 @@
         function updateSMMDetails() {
             const sel = document.getElementById('smm-service'); const box = document.getElementById('smm-detail-box');
             if(sel.selectedIndex > 0) {
-                const opt = sel.options[sel.selectedIndex];
-                document.getElementById('smm-desc').innerText = opt.getAttribute('data-desc') || 'ไม่มีรายละเอียดเพิ่มเติม';
-                document.getElementById('smm-min').innerText = opt.getAttribute('data-min'); document.getElementById('smm-max').innerText = opt.getAttribute('data-max');
-                box.classList.remove('hidden'); calculateSMMPrice();
+                const opt = sel.options[sel.selectedIndex]; document.getElementById('smm-desc').innerText = opt.getAttribute('data-desc') || 'ไม่มีรายละเอียดเพิ่มเติม'; document.getElementById('smm-min').innerText = opt.getAttribute('data-min'); document.getElementById('smm-max').innerText = opt.getAttribute('data-max'); box.classList.remove('hidden'); calculateSMMPrice();
             } else box.classList.add('hidden');
         }
 
         function calculateSMMPrice() {
             const sel = document.getElementById('smm-service'), qty = document.getElementById('smm-qty').value;
             if (sel.selectedIndex > 0 && qty > 0) {
-                const rate = parseFloat(sel.options[sel.selectedIndex].getAttribute('data-rate'));
-                document.getElementById('smm-price').innerText = ((rate / 1000) * qty).toFixed(2);
+                const rate = parseFloat(sel.options[sel.selectedIndex].getAttribute('data-rate')); document.getElementById('smm-price').innerText = ((rate / 1000) * qty).toFixed(2);
             } else document.getElementById('smm-price').innerText = '0.00';
         }
 
         async function submitSMMOrder() {
-            const sel = document.getElementById('smm-service');
-            if(sel.selectedIndex === 0) return showAlert('ผิดพลาด', 'กรุณาเลือกบริการก่อนค่ะ', 'error');
-            const serviceId = sel.options[sel.selectedIndex].getAttribute('data-id');
-            const link = document.getElementById('smm-link').value, qty = document.getElementById('smm-qty').value;
+            const sel = document.getElementById('smm-service'); if(sel.selectedIndex === 0) return showAlert('ผิดพลาด', 'กรุณาเลือกบริการก่อนค่ะ', 'error');
+            const serviceId = sel.options[sel.selectedIndex].getAttribute('data-id'), link = document.getElementById('smm-link').value, qty = document.getElementById('smm-qty').value;
             const price = parseFloat(document.getElementById('smm-price').innerText);
-            
             if(!link || qty <= 0) return showAlert('ผิดพลาด', 'ใส่ลิงก์และจำนวนให้ถูกต้องนะคะ', 'error');
             if(currentUser.credit < price) return showAlert('เครดิตไม่พอ', 'ยอดเงินไม่พอค่ะ เติมเงินก่อนน้า', 'error');
-
             const res = await fetchGAS({ action: 'order_smm', username: currentUser.username, service_id: serviceId, link: link, quantity: qty, price: price });
-            if(res && res.status === 'success') { showAlert('สำเร็จ!', res.message, 'success'); document.getElementById('smm-link').value = ''; document.getElementById('smm-qty').value = ''; loadDashboard(); }
-            else if(res) showAlert('ผิดพลาด', res.message, 'error');
-        }
-
-        async function loadProducts() {
-            const res = await fetchGAS({ action: 'get_products' });
-            if(res && res.status === 'success') {
-                const grid = document.getElementById('product-grid'); grid.innerHTML = '';
-                res.products.forEach(p => {
-                    let buyBtn = p.type === 'game' 
-                        ? `<button onclick="openGameModal('${p.name}', '${p.quantity_val} ${p.quantity_unit}', ${p.price})" class="w-full btn-pink py-2 text-sm">เติมเกมนี้ ${p.price}฿</button>`
-                        : `<button class="w-full bg-purple-500 text-white font-bold py-2 rounded-full text-sm hover:bg-purple-600 shadow-md">ซื้อเลย ${p.price}฿</button>`;
-                    grid.innerHTML += `
-                        <div class="cute-card overflow-hidden text-center p-4 border border-pink-50">
-                            <img src="${p.image || 'https://via.placeholder.com/150'}" class="w-20 h-20 mx-auto rounded-2xl mb-3 object-cover shadow-sm">
-                            <div class="text-xs text-pink-500 font-bold mb-1">${p.category}</div>
-                            <div class="font-bold text-gray-700 truncate mb-1">${p.name}</div>
-                            <div class="text-xs text-gray-400 mb-3">${p.type === 'game' ? `รับ ${p.quantity_val} ${p.quantity_unit}` : 'แอปพรีเมียม'}</div>
-                            ${buyBtn}
-                        </div>`;
-                });
-            }
+            if(res && res.status === 'success') { showAlert('สำเร็จ!', res.message, 'success'); document.getElementById('smm-link').value = ''; document.getElementById('smm-qty').value = ''; loadDashboard(); } else if(res) showAlert('ผิดพลาด', res.message, 'error');
         }
 
         function openGameModal(name, detail, price) {
-            document.getElementById('game-modal-desc').innerText = `${name} | ${detail} | ราคา ${price} ฿`;
-            document.getElementById('game-temp-data').value = JSON.stringify({name: name, detail: detail, price: price});
-            document.getElementById('game-uid').value = ''; showModal('game-modal');
+            document.getElementById('game-modal-desc').innerText = `${name} | ${detail} | ราคา ${price} ฿`; document.getElementById('game-temp-data').value = JSON.stringify({name: name, detail: detail, price: price}); document.getElementById('game-uid').value = ''; showModal('game-modal');
         }
 
         async function confirmGameOrder() {
-            const uid = document.getElementById('game-uid').value;
-            if(!uid) return showAlert('ผิดพลาด', 'กรุณากรอก UID ของเกมด้วยนะคะ', 'error');
+            const uid = document.getElementById('game-uid').value; if(!uid) return showAlert('ผิดพลาด', 'กรุณากรอก UID ของเกมด้วยนะคะ', 'error');
             const pData = JSON.parse(document.getElementById('game-temp-data').value);
-            
             const res = await fetchGAS({ action: 'order_game', username: currentUser.username, type: 'เกม', product_name: pData.name, quantity: pData.detail, uid: uid, price: pData.price });
-            if(res && res.status === 'success') { closeAllModals(); showAlert('สำเร็จ!', res.message, 'success'); loadDashboard(); }
-            else if(res) showAlert('ผิดพลาด', res.message, 'error');
+            if(res && res.status === 'success') { closeAllModals(); showAlert('สำเร็จ!', res.message, 'success'); loadDashboard(); } else if(res) showAlert('ผิดพลาด', res.message, 'error');
         }
 
         function switchAdminTab(tab) {
-            document.querySelectorAll('.admin-tab').forEach(el => el.classList.remove('active'));
-            document.getElementById(`admin-tab-${tab}`).classList.add('active');
-            const btns = document.querySelectorAll('#page-admin button[onclick^="switchAdminTab"]');
-            btns.forEach(b => { b.className = "px-4 py-2 bg-gray-100 text-gray-500 font-bold rounded-t-xl hover:bg-gray-200"; });
-            event.currentTarget.className = "px-4 py-2 bg-purple-100 text-purple-700 font-bold rounded-t-xl";
+            document.querySelectorAll('.admin-tab').forEach(el => el.classList.remove('active')); document.getElementById(`admin-tab-${tab}`).classList.add('active');
+            const btns = document.querySelectorAll('#page-admin button[onclick^="switchAdminTab"]'); btns.forEach(b => { b.className = "px-4 py-2 bg-gray-100 text-gray-500 font-bold rounded-t-xl hover:bg-gray-200 whitespace-nowrap"; }); event.currentTarget.className = "px-4 py-2 bg-purple-100 text-purple-700 font-bold rounded-t-xl whitespace-nowrap";
         }
 
         async function submitAdminApp() {
@@ -554,22 +484,18 @@
             if(res && res.status==='success') { showAlert('สำเร็จ', res.message, 'success'); loadProducts(); }
         }
 
-        // --- NEW: ฟังก์ชันแอดมินส่งข้อความเข้า Inbox ---
+        async function submitAdminStock() {
+            const pid = document.getElementById('stock-product-id').value, codes = document.getElementById('stock-codes').value;
+            if(!pid || !codes) return showAlert('ผิดพลาด', 'เลือกสินค้าและใส่รหัสด้วยนะคะ', 'error');
+            const res = await fetchGAS({ action: 'admin_add_stock', product_id: pid, codes: codes });
+            if(res && res.status==='success') { showAlert('สำเร็จ', res.message, 'success'); document.getElementById('stock-codes').value = ''; }
+        }
+
         async function submitAdminMessage() {
-            const user = document.getElementById('admin-msg-user').value;
-            const title = document.getElementById('admin-msg-title').value;
-            const detail = document.getElementById('admin-msg-detail').value;
-
+            const user = document.getElementById('admin-msg-user').value, title = document.getElementById('admin-msg-title').value, detail = document.getElementById('admin-msg-detail').value;
             if(!user || !title || !detail) return showAlert('ผิดพลาด', 'กรุณากรอกข้อมูลให้ครบทุกช่องนะคะ', 'error');
-
             const res = await fetchGAS({ action: 'admin_send_message', target_user: user, title: title, detail: detail });
-            if(res && res.status === 'success') {
-                showAlert('สำเร็จ', res.message, 'success');
-                document.getElementById('admin-msg-title').value = '';
-                document.getElementById('admin-msg-detail').value = '';
-            } else if(res) {
-                showAlert('ผิดพลาด', res.message, 'error');
-            }
+            if(res && res.status === 'success') { showAlert('สำเร็จ', res.message, 'success'); document.getElementById('admin-msg-title').value = ''; document.getElementById('admin-msg-detail').value = ''; } else if(res) showAlert('ผิดพลาด', res.message, 'error');
         }
 
         window.onload = checkLoginState;
