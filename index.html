@@ -86,9 +86,7 @@
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex justify-between h-[70px] items-center">
                 <div class="flex items-center space-x-3 cursor-pointer" onclick="navigate('guest')">
-                    <div class="w-10 h-10 rounded-full bg-pink-100 flex items-center justify-center border-2 border-pink-300">
-                        <i class="fa-solid fa-crown text-pink-500 text-lg"></i>
-                    </div>
+                    <img src="https://img5.pic.in.th/file/secure-sv1/Imlady.png" alt="Logo" class="h-10 w-10 rounded-full bg-white p-1 border-2 border-pink-300">
                     <span class="font-bold text-2xl bg-clip-text text-transparent bg-gradient-to-r from-pink-500 to-rose-400">
                         I'm Lady Shop
                     </span>
@@ -119,16 +117,16 @@
 
     <div id="main-menu" class="hidden bg-white/50 backdrop-blur-sm shadow-sm mb-6 border-b border-pink-100">
         <div class="max-w-7xl mx-auto px-4 flex space-x-2 overflow-x-auto py-3 scrollbar-hide">
-            <button onclick="navigate('dashboard')" class="menu-btn active px-5 py-2 rounded-full font-medium transition text-pink-600 bg-pink-100">
+            <button onclick="navigate('dashboard')" class="menu-btn active px-5 py-2 rounded-full font-medium transition text-pink-600 bg-pink-100" data-target="dashboard">
                 <i class="fa-solid fa-house-chimney mr-1"></i> หน้าแรก
             </button>
-            <button onclick="navigate('premium')" class="menu-btn px-5 py-2 rounded-full font-medium transition text-gray-500 hover:bg-pink-50 hover:text-pink-500">
+            <button onclick="navigate('premium')" class="menu-btn px-5 py-2 rounded-full font-medium transition text-gray-500 hover:bg-pink-50 hover:text-pink-500" data-target="premium">
                 <i class="fa-solid fa-gem mr-1"></i> แอพพรีเมียม
             </button>
-            <button onclick="navigate('smm')" class="menu-btn px-5 py-2 rounded-full font-medium transition text-gray-500 hover:bg-pink-50 hover:text-pink-500">
+            <button onclick="navigate('smm')" class="menu-btn px-5 py-2 rounded-full font-medium transition text-gray-500 hover:bg-pink-50 hover:text-pink-500" data-target="smm">
                 <i class="fa-solid fa-rocket mr-1"></i> ปั๊มผู้ติดตาม
             </button>
-            <button id="menu-admin" onclick="navigate('admin')" class="hidden menu-btn px-5 py-2 rounded-full font-medium transition text-purple-500 hover:bg-purple-50">
+            <button id="menu-admin" onclick="navigate('admin')" class="hidden menu-btn px-5 py-2 rounded-full font-medium transition text-purple-500 hover:bg-purple-50" data-target="admin">
                 <i class="fa-solid fa-screwdriver-wrench mr-1"></i> จัดการระบบ
             </button>
         </div>
@@ -138,7 +136,7 @@
         
         <div id="page-guest" class="page active fade-in flex flex-col items-center justify-center pt-10">
             <div class="w-32 h-32 bg-white rounded-full flex items-center justify-center shadow-lg border-4 border-pink-100 mb-6 bounce-soft">
-                <i class="fa-solid fa-store text-6xl text-pink-400"></i>
+                <img src="https://img5.pic.in.th/file/secure-sv1/Imlady.png" alt="Logo Center" class="w-24 h-24 rounded-full">
             </div>
             <h1 class="text-4xl md:text-5xl font-bold text-gray-800 mb-4 text-center">ช้อปปิ้งแอพพรีเมียม <span class="text-pink-500">สุดคุ้ม</span></h1>
             <p class="text-lg text-gray-500 mb-10 text-center max-w-xl">
@@ -170,7 +168,7 @@
                         <i class="fa-solid fa-envelope text-pink-400 mr-2"></i> ข้อความ
                     </button>
                     <button class="flex-1 md:flex-none bg-green-50 border border-green-200 text-green-600 px-4 py-2 rounded-xl font-medium hover:bg-green-100 flex items-center justify-center">
-                        <i class="fa-solid fa-headset text-lg mr-2"></i> แอดมิน
+                        <i class="fa-brands fa-line text-lg mr-2"></i> แอดมิน
                     </button>
                 </div>
             </div>
@@ -346,7 +344,7 @@
         </div>
     </div>
 
-    <div id="alert-modal" class="fixed inset-0 bg-black/40 backdrop-blur-sm flex items-center justify-center hidden z-[90] p-4">
+    <div id="alert-modal" class="modal-container fixed inset-0 bg-black/40 backdrop-blur-sm flex items-center justify-center hidden z-[90] p-4">
         <div class="bg-white p-8 rounded-[2rem] w-full max-w-sm text-center shadow-2xl bounce-soft">
             <div id="alert-icon" class="text-5xl mb-4"></div>
             <h3 id="alert-title" class="text-2xl font-bold mb-2 text-gray-800">Title</h3>
@@ -436,8 +434,8 @@
     </div>
 
     <script>
-        // *** เปลี่ยนเป็น URL ของ Google Apps Script ที่ Deploy ใหม่ล่าสุด ***
-        const API_URL = "https://script.google.com/macros/s/AKfycbwk4oivZM_oX9ua2cHSwIsXP8NNzI4cG0wdd9sW_JHeK7DQEJDdqjuTJyuAJuhc4xmI3Q/exec"; 
+        // *** เปลี่ยนเป็น URL ของ Google Apps Script ที่คุณ Deploy ล่าสุดนะคะ ***
+        const API_URL = "YOUR_NEW_WEB_APP_URL"; 
         
         let currentUser = null;
 
@@ -481,7 +479,6 @@
         function showModal(id) { document.getElementById(id).classList.remove('hidden'); }
         function hideModal(id) { document.getElementById(id).classList.add('hidden'); }
         
-        // ฟังก์ชันใหม่: ปิด Modal ทั้งหมด เพื่อป้องกันการค้างหน้าจอ
         function closeAllModals() {
             document.querySelectorAll('.modal-container').forEach(el => el.classList.add('hidden'));
             hideModal('loading-modal');
@@ -499,19 +496,35 @@
             showModal('alert-modal');
         }
 
-        // --- Navigation ---
+        // --- Strict Navigation (แยกหน้าก่อน/หลัง เข้าระบบ 100%) ---
         function navigate(pageId) {
-            closeAllModals(); // ดักจับการปิด Modal ทุกครั้งที่เปลี่ยนหน้า
+            closeAllModals(); 
+            
+            // กฎข้อ 1: ถ้ายังไม่ล็อกอิน ไม่อนุญาตให้เข้าหน้าอื่นนอกจาก Guest
+            if (!currentUser && pageId !== 'guest') {
+                pageId = 'guest'; 
+            } 
+            // กฎข้อ 2: ถ้าล็อกอินแล้ว ไม่อนุญาตให้เห็นหน้า Guest อีก บังคับเข้าหน้า Dashboard
+            else if (currentUser && pageId === 'guest') {
+                pageId = 'dashboard';
+            }
+
+            // ซ่อนทุกหน้า และแสดงเฉพาะหน้าที่อนุญาต
             document.querySelectorAll('.page').forEach(el => el.classList.remove('active'));
             document.getElementById('page-' + pageId).classList.add('active');
             
+            // อัปเดตแถบเมนูด้านบน
             if (pageId !== 'guest') {
                 document.querySelectorAll('.menu-btn').forEach(btn => {
                     btn.classList.remove('active', 'text-pink-600', 'bg-pink-100');
                     btn.classList.add('text-gray-500');
                 });
-                event.currentTarget.classList.remove('text-gray-500');
-                event.currentTarget.classList.add('active', 'text-pink-600', 'bg-pink-100');
+                
+                const activeBtn = document.querySelector(`.menu-btn[data-target="${pageId}"]`);
+                if(activeBtn) {
+                    activeBtn.classList.remove('text-gray-500');
+                    activeBtn.classList.add('active', 'text-pink-600', 'bg-pink-100');
+                }
             }
 
             if(pageId === 'dashboard') loadDashboard();
@@ -522,6 +535,8 @@
             const saved = localStorage.getItem('imlady_session');
             if (saved) {
                 currentUser = JSON.parse(saved);
+                
+                // จัดการแถบเมนูด้านบน (ลบปุ่มล็อกอิน/สมัครสมาชิก และแสดงโปรไฟล์แทน)
                 document.getElementById('nav-guest').classList.add('hidden');
                 document.getElementById('nav-user').classList.remove('hidden');
                 document.getElementById('main-menu').classList.remove('hidden');
@@ -533,8 +548,9 @@
                 document.getElementById('nav-credit').innerText = currentUser.credit.toFixed(2);
                 document.getElementById('dash-username').innerText = currentUser.username;
                 
-                closeAllModals(); // บังคับปิด Modal ที่ค้างอยู่
-                navigate('dashboard');
+                closeAllModals(); 
+                navigate('dashboard'); // จะถูกคัดกรองด้วย Guard ของ navigate()
+                
                 setInterval(loadDashboard, 180000); 
             } else {
                 logout(false);
@@ -544,7 +560,13 @@
         function logout(reload = true) {
             localStorage.removeItem('imlady_session');
             currentUser = null;
-            if(reload) window.location.reload();
+            
+            // ล้าง UI เพื่อความชัวร์
+            document.getElementById('nav-guest').classList.remove('hidden');
+            document.getElementById('nav-user').classList.add('hidden');
+            document.getElementById('main-menu').classList.add('hidden');
+            
+            navigate('guest'); // เด้งกลับหน้าแรกทันที
         }
 
         async function submitLogin() {
@@ -559,7 +581,12 @@
                     credit: res.user.credit,
                     role: res.user.role
                 }));
-                closeAllModals(); // บังคับปิด Modal แบบเด็ดขาด
+                closeAllModals(); 
+                
+                // ล้างฟอร์ม
+                document.getElementById('login-user').value = '';
+                document.getElementById('login-pass').value = '';
+                
                 checkLoginState();
             } else if(res) {
                 showAlert('อุ๊ปส์!', res.message, 'error');
@@ -581,14 +608,12 @@
                 closeAllModals();
                 showAlert('สำเร็จแล้ว!', res.message, 'success');
                 
-                // ล้างค่าฟอร์ม
                 document.getElementById('reg-user').value = '';
                 document.getElementById('reg-email').value = '';
                 document.getElementById('reg-phone').value = '';
                 document.getElementById('reg-pass').value = '';
                 document.getElementById('reg-pass-confirm').value = '';
                 
-                // เปิดหน้าล็อกอินต่อ
                 setTimeout(() => showModal('login-modal'), 1500);
             } else if(res) {
                 showAlert('ไม่สามารถสมัครได้', res.message, 'error');
