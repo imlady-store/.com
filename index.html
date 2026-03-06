@@ -121,7 +121,14 @@
                         <div>
                             <label class="block text-gray-600 font-medium mb-1"><i class="fa-solid fa-link text-pink-400 mr-1"></i> ลิงก์เป้าหมาย (URL)</label>
                             <input type="text" id="smm-link" class="cute-input" placeholder="วางลิงก์เป้าหมายให้ถูกต้องที่นี่...">
+                            <p id="smm-link-example" class="text-xs text-gray-500 mt-2 hidden ml-1"><i class="fa-solid fa-lightbulb text-yellow-500 mr-1"></i> ตัวอย่าง: <span id="smm-link-example-text" class="text-pink-500 font-mono"></span></p>
                         </div>
+                        
+                        <div id="smm-comments-container" class="hidden mt-2">
+                            <label class="block text-gray-600 font-medium mb-1"><i class="fa-solid fa-comment-dots text-pink-400 mr-1"></i> ข้อความคอมเมนต์ (1 บรรทัด = 1 คอมเมนต์)</label>
+                            <textarea id="smm-comments" oninput="updateCommentQty()" class="cute-input h-32 text-sm leading-relaxed" placeholder="น่ารักมากเลยค่ะ&#10;สุดยอดเลย&#10;ติดตามนะคะ"></textarea>
+                        </div>
+
                         <div class="grid grid-cols-2 gap-4">
                             <div>
                                 <label class="block text-gray-600 font-medium mb-1"><i class="fa-solid fa-arrow-up-9-1 text-pink-400 mr-1"></i> จำนวนยอด</label>
@@ -154,7 +161,6 @@
                 <button onclick="switchAdminTab('stock')" class="px-4 py-2 bg-gray-100 text-gray-500 font-bold rounded-t-xl hover:bg-gray-200 whitespace-nowrap transition"><i class="fa-solid fa-cubes mr-1"></i> จัดการสินค้า/สต๊อก</button>
                 <button onclick="switchAdminTab('message')" class="px-4 py-2 bg-gray-100 text-gray-500 font-bold rounded-t-xl hover:bg-gray-200 whitespace-nowrap transition"><i class="fa-solid fa-paper-plane mr-1"></i> ส่งข้อความ/โค้ด</button>
             </div>
-
             <div id="admin-tab-app" class="admin-tab active cute-card p-6 border-t-4 border-purple-400">
                 <h3 class="font-bold text-lg mb-4 text-purple-600">เพิ่มสินค้า: แอปพรีเมียม</h3>
                 <div class="space-y-3 max-w-lg">
@@ -165,7 +171,6 @@
                     <button onclick="submitAdminApp()" class="w-full bg-purple-500 text-white py-2 rounded-xl font-bold hover:bg-purple-600 transition"><i class="fa-solid fa-floppy-disk mr-1"></i> บันทึกข้อมูล</button>
                 </div>
             </div>
-
             <div id="admin-tab-game" class="admin-tab cute-card p-6 border-t-4 border-purple-400">
                 <h3 class="font-bold text-lg mb-4 text-purple-600">เพิ่มสินค้า: หมวดหมู่เติมเกม</h3>
                 <div class="space-y-3 max-w-lg">
@@ -177,7 +182,6 @@
                     <button onclick="submitAdminGame()" class="w-full bg-purple-500 text-white py-2 rounded-xl font-bold hover:bg-purple-600 transition"><i class="fa-solid fa-floppy-disk mr-1"></i> บันทึกข้อมูล</button>
                 </div>
             </div>
-
             <div id="admin-tab-stock" class="admin-tab cute-card p-6 border-t-4 border-purple-400">
                 <h3 class="font-bold text-lg mb-4 text-purple-600">จัดการสต๊อก & ลบสินค้า</h3>
                 <div class="space-y-3 mb-8 p-4 bg-gray-50 rounded-xl border border-gray-200">
@@ -192,7 +196,6 @@
                     <div id="admin-product-list" class="space-y-2 max-h-60 overflow-y-auto pr-2"></div>
                 </div>
             </div>
-
             <div id="admin-tab-message" class="admin-tab cute-card p-6 border-t-4 border-purple-400">
                 <h3 class="font-bold text-lg mb-4 text-purple-600">ส่งข้อความ / จัดส่งโค้ดเกม</h3>
                 <div class="space-y-3 max-w-lg">
@@ -206,39 +209,19 @@
     </div>
 
     <div id="loading-modal" class="modal-container hidden fixed inset-0 bg-white/80 backdrop-blur-sm flex items-center justify-center z-[100]"><div class="bg-white p-8 rounded-3xl shadow-xl flex flex-col items-center border border-pink-100"><i class="fa-solid fa-circle-notch fa-spin text-5xl text-pink-400 mb-4"></i><p class="text-pink-600 font-bold text-lg">รอแปบนึงนะคะ...</p></div></div>
-    
     <div id="alert-modal" class="modal-container hidden fixed inset-0 bg-black/40 backdrop-blur-sm flex items-center justify-center z-[90] p-4"><div class="bg-white p-8 rounded-3xl w-full max-w-sm text-center shadow-2xl border border-pink-50"><div id="alert-icon" class="text-6xl mb-4"></div><h3 id="alert-title" class="text-2xl font-bold mb-2 text-gray-800"></h3><p id="alert-message" class="text-gray-500 mb-6"></p><button onclick="hideModal('alert-modal')" class="w-full btn-pink py-3 font-bold text-lg">เข้าใจแล้วค่ะ</button></div></div>
     
-    <div id="product-detail-modal" class="modal-container hidden fixed inset-0 bg-black/40 backdrop-blur-sm flex items-center justify-center z-[80] p-4">
-        <div class="bg-white p-6 rounded-3xl w-full max-w-sm shadow-2xl relative border border-pink-100">
-            <button onclick="hideModal('product-detail-modal')" class="absolute top-4 right-5 text-gray-300 hover:text-pink-500 transition"><i class="fa-solid fa-xmark text-2xl"></i></button>
-            <div class="text-center mb-4 mt-2">
-                <img id="detail-img" src="" class="w-28 h-28 mx-auto rounded-2xl object-cover shadow-md mb-3 border-4 border-pink-50">
-                <div id="detail-category" class="text-xs text-pink-400 font-bold mb-1 tracking-wide uppercase"></div>
-                <h3 id="detail-name" class="text-2xl font-bold text-gray-800 leading-tight mb-2"></h3>
-                <div id="detail-price" class="text-lg font-bold text-pink-600 bg-pink-50 inline-block px-5 py-1 rounded-full border border-pink-100"></div>
-            </div>
-            <div class="bg-gray-50 rounded-xl p-4 mb-4 text-sm text-gray-600 whitespace-pre-wrap max-h-40 overflow-y-auto border border-gray-100 leading-relaxed" id="detail-desc"></div>
-            <div id="detail-action-btn"></div>
-        </div>
-    </div>
-
+    <div id="product-detail-modal" class="modal-container hidden fixed inset-0 bg-black/40 backdrop-blur-sm flex items-center justify-center z-[80] p-4"><div class="bg-white p-6 rounded-3xl w-full max-w-sm shadow-2xl relative border border-pink-100"><button onclick="hideModal('product-detail-modal')" class="absolute top-4 right-5 text-gray-300 hover:text-pink-500 transition"><i class="fa-solid fa-xmark text-2xl"></i></button><div class="text-center mb-4 mt-2"><img id="detail-img" src="" class="w-28 h-28 mx-auto rounded-2xl object-cover shadow-md mb-3 border-4 border-pink-50"><div id="detail-category" class="text-xs text-pink-400 font-bold mb-1 tracking-wide uppercase"></div><h3 id="detail-name" class="text-2xl font-bold text-gray-800 leading-tight mb-2"></h3><div id="detail-price" class="text-lg font-bold text-pink-600 bg-pink-50 inline-block px-5 py-1 rounded-full border border-pink-100"></div></div><div class="bg-gray-50 rounded-xl p-4 mb-4 text-sm text-gray-600 whitespace-pre-wrap max-h-40 overflow-y-auto border border-gray-100 leading-relaxed" id="detail-desc"></div><div id="detail-action-btn"></div></div></div>
     <div id="history-modal" class="modal-container hidden fixed inset-0 bg-black/40 backdrop-blur-sm flex items-center justify-center z-[80] p-4"><div class="bg-white p-6 rounded-3xl w-full max-w-4xl shadow-2xl relative max-h-[90vh] flex flex-col"><button onclick="hideModal('history-modal')" class="absolute top-4 right-5 text-gray-400 hover:text-pink-500"><i class="fa-solid fa-xmark text-2xl"></i></button><h3 class="text-2xl font-bold mb-4 text-pink-600"><i class="fa-solid fa-clock-rotate-left mr-2"></i> ประวัติการสั่งซื้อ</h3><div class="overflow-y-auto flex-1 border border-pink-50 rounded-xl"><table class="w-full text-left min-w-[700px]"><thead class="bg-pink-50 text-gray-600 text-sm sticky top-0"><tr><th class="p-4 rounded-tl-xl">รหัส</th><th class="p-4">ประเภท</th><th class="p-4">รายการ</th><th class="p-4">ราคา</th><th class="p-4">สถานะ</th><th class="p-4 rounded-tr-xl">วันที่</th></tr></thead><tbody id="full-history-table" class="text-sm"></tbody></table></div></div></div>
-    
     <div id="inbox-modal" class="modal-container hidden fixed inset-0 bg-black/40 backdrop-blur-sm flex items-center justify-center z-[80] p-4"><div class="bg-white p-6 rounded-3xl w-full max-w-md shadow-2xl relative max-h-[90vh] flex flex-col"><button onclick="hideModal('inbox-modal')" class="absolute top-4 right-5 text-gray-400 hover:text-pink-500"><i class="fa-solid fa-xmark text-2xl"></i></button><h3 class="text-2xl font-bold mb-4 text-pink-600"><i class="fa-solid fa-envelope-open-text mr-2"></i> กล่องข้อความ</h3><div id="inbox-list" class="overflow-y-auto flex-1 space-y-3 pr-1"></div></div></div>
-    
     <div id="read-msg-modal" class="modal-container hidden fixed inset-0 bg-black/40 backdrop-blur-sm flex items-center justify-center z-[90] p-4"><div class="bg-white p-8 rounded-3xl w-full max-w-sm shadow-2xl relative border border-pink-100"><button onclick="hideModal('read-msg-modal')" class="absolute top-4 right-5 text-gray-400 hover:text-pink-500"><i class="fa-solid fa-xmark text-2xl"></i></button><h3 id="read-msg-title" class="text-xl font-bold mb-2 text-pink-600 pr-6"></h3><p id="read-msg-date" class="text-xs text-gray-400 mb-4 pb-2 border-b border-pink-50"></p><div id="read-msg-detail" class="text-gray-700 text-sm whitespace-pre-wrap mb-6 bg-gray-50 p-4 rounded-xl border border-gray-100 leading-relaxed"></div><button onclick="hideModal('read-msg-modal')" class="w-full btn-pink py-3 font-bold shadow-md">ปิดหน้าต่าง</button></div></div>
-    
     <div id="game-modal" class="modal-container hidden fixed inset-0 bg-black/40 backdrop-blur-sm flex items-center justify-center z-[80] p-4"><div class="bg-white p-8 rounded-3xl w-full max-w-sm shadow-2xl relative border border-pink-100"><button onclick="hideModal('game-modal')" class="absolute top-4 right-5 text-gray-400 hover:text-pink-500"><i class="fa-solid fa-xmark text-2xl"></i></button><div class="w-16 h-16 bg-pink-100 text-pink-500 rounded-full flex items-center justify-center mx-auto mb-4 text-2xl"><i class="fa-solid fa-gamepad"></i></div><h3 class="text-xl font-bold mb-2 text-center text-gray-800">กรอกข้อมูลตัวละคร</h3><p id="game-modal-desc" class="text-center text-sm text-pink-600 mb-6 bg-pink-50 p-3 rounded-xl font-bold border border-pink-100"></p><input type="text" id="game-uid" class="cute-input mb-6 text-center font-bold text-lg tracking-wider" placeholder="UID / OpenID ของคุณ"><input type="hidden" id="game-temp-data"><button onclick="confirmGameOrder()" class="w-full btn-pink py-3 font-bold text-lg shadow-md"><i class="fa-solid fa-check-circle mr-1"></i> ยืนยันการสั่งซื้อ</button></div></div>
-    
     <div id="login-modal" class="modal-container hidden fixed inset-0 bg-black/40 backdrop-blur-sm flex items-center justify-center z-[80] p-4"><div class="bg-white p-8 rounded-3xl w-full max-w-sm relative border border-pink-100"><button onclick="hideModal('login-modal')" class="absolute top-4 right-5 text-gray-400 hover:text-pink-500"><i class="fa-solid fa-xmark text-2xl"></i></button><div class="w-16 h-16 bg-pink-100 text-pink-500 rounded-full flex items-center justify-center mx-auto mb-4 text-2xl"><i class="fa-solid fa-right-to-bracket"></i></div><h3 class="text-2xl font-bold mb-6 text-center text-gray-800">เข้าสู่ระบบ</h3><input type="text" id="login-user" class="cute-input mb-4" placeholder="ชื่อผู้ใช้งาน"><input type="password" id="login-pass" class="cute-input mb-6" placeholder="รหัสผ่าน"><button onclick="submitLogin()" class="w-full btn-pink py-3 font-bold text-lg shadow-md">ล็อคอินเข้าใช้งาน</button></div></div>
-    
     <div id="register-modal" class="modal-container hidden fixed inset-0 bg-black/40 backdrop-blur-sm flex items-center justify-center z-[80] p-4"><div class="bg-white p-8 rounded-3xl w-full max-w-md relative max-h-[90vh] overflow-y-auto border border-pink-100"><button onclick="hideModal('register-modal')" class="absolute top-4 right-5 text-gray-400 hover:text-pink-500"><i class="fa-solid fa-xmark text-2xl"></i></button><div class="w-16 h-16 bg-pink-100 text-pink-500 rounded-full flex items-center justify-center mx-auto mb-4 mt-2 text-2xl"><i class="fa-solid fa-user-plus"></i></div><h3 class="text-2xl font-bold mb-6 text-center text-gray-800">สร้างบัญชีใหม่</h3><div class="space-y-4 mb-6"><input type="text" id="reg-user" class="cute-input" placeholder="ตั้งชื่อผู้ใช้งาน"><input type="email" id="reg-email" class="cute-input" placeholder="อีเมลของคุณ"><input type="tel" id="reg-phone" class="cute-input" placeholder="เบอร์โทรศัพท์"><input type="password" id="reg-pass" class="cute-input" placeholder="ตั้งรหัสผ่านที่ปลอดภัย"></div><button onclick="submitRegister()" class="w-full btn-pink py-3 font-bold text-lg shadow-md">สมัครสมาชิกเลย</button></div></div>
-    
     <div id="topup-modal" class="modal-container hidden fixed inset-0 bg-black/40 backdrop-blur-sm flex items-center justify-center z-[80] p-4"><div class="bg-white p-8 rounded-3xl w-full max-w-sm relative border border-pink-100"><button onclick="hideModal('topup-modal')" class="absolute top-4 right-5 text-gray-400 hover:text-pink-500"><i class="fa-solid fa-xmark text-2xl"></i></button><div class="w-16 h-16 bg-pink-100 text-pink-500 rounded-full flex items-center justify-center mx-auto mb-4 text-2xl"><i class="fa-solid fa-money-bill-transfer"></i></div><h3 class="text-xl font-bold mb-4 text-center text-gray-800">แจ้งโอนเงิน</h3><div class="bg-pink-50 p-4 rounded-xl mb-5 text-center border border-pink-100"><p class="text-sm text-gray-600 mb-1">โอนเงินเข้าบัญชี</p><p class="font-bold text-pink-600 text-xl tracking-wider">012-3-45678-9</p><p class="text-xs text-gray-500 mt-1">ธนาคารกสิกรไทย (ชื่อบัญชี แอดมินร้าน)</p></div><input type="number" id="topup-amount" class="cute-input mb-3" placeholder="ระบุยอดเงินโอน (บาท)"><input type="text" id="topup-ref" maxlength="6" class="cute-input mb-4" placeholder="เลขสลิป 6 ตัวท้าย"><label class="block text-xs text-gray-500 ml-1 mb-1">อัปโหลดรูปภาพสลิป</label><input type="file" id="topup-file" class="w-full mb-6 p-2 bg-gray-50 border-2 border-dashed border-pink-200 rounded-xl text-sm text-gray-500 file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-xs file:font-semibold file:bg-pink-50 file:text-pink-600 hover:file:bg-pink-100 transition"><button onclick="submitTopup()" class="w-full btn-pink py-3 font-bold text-lg shadow-md"><i class="fa-solid fa-cloud-arrow-up mr-1"></i> ส่งหลักฐานการโอน</button></div></div>
 
     <script>
-        // *** 🔴 สำคัญ: วาง URL ที่ได้จาก Apps Script ของคุณตรงนี้ 🔴 ***
+        // *** 🔴 วาง URL ของ Apps Script คุณที่นี่เลยค่ะ 🔴 ***
         const API_URL = "https://script.google.com/macros/s/AKfycbwk4oivZM_oX9ua2cHSwIsXP8NNzI4cG0wdd9sW_JHeK7DQEJDdqjuTJyuAJuhc4xmI3Q/exec"; 
         
         let currentUser = null; let smmDataCache = null; let currentSmmServices = []; let globalMessages = []; let productsCache = [];
@@ -317,7 +300,6 @@
             }
         }
 
-        // ================= สต๊อกและการลบสินค้า ================= //
         async function loadProducts() {
             const res = await fetchGAS({ action: 'get_products' });
             if(res && res.status === 'success') {
@@ -378,7 +360,7 @@
             document.getElementById('detail-action-btn').innerHTML = btnHtml; showModal('product-detail-modal');
         }
 
-        // ================= ระบบ SMM โชว์รายละเอียด ================= //
+        // ================= ระบบ SMM (เพิ่มกล่องคอมเมนต์ และตัวอย่างลิงก์) ================= //
         async function initializeSMM() {
             if(!smmDataCache) {
                 const res = await fetchGAS({ action: 'get_smm' });
@@ -392,12 +374,15 @@
         function renderSMMCategories() {
             const plat = document.getElementById('smm-platform').value; const catSel = document.getElementById('smm-category');
             catSel.innerHTML = '<option value="">-- เลือกหมวดหมู่ --</option>'; document.getElementById('smm-service').innerHTML = '<option value="">-- เลือกรอหมวดหมู่ --</option>'; document.getElementById('smm-detail-content').innerHTML = '';
+            document.getElementById('smm-link-example').classList.add('hidden'); document.getElementById('smm-comments-container').classList.add('hidden');
             if(plat && smmDataCache[plat]) smmDataCache[plat].forEach((c, idx) => { catSel.innerHTML += `<option value="${idx}">${c.category_name}</option>`; });
         }
 
         function renderSMMServices() {
             const plat = document.getElementById('smm-platform').value; const catIdx = document.getElementById('smm-category').value; const srvSel = document.getElementById('smm-service');
             srvSel.innerHTML = '<option value="">-- เลือกบริการ --</option>'; document.getElementById('smm-detail-content').innerHTML = '';
+            document.getElementById('smm-link-example').classList.add('hidden'); document.getElementById('smm-comments-container').classList.add('hidden');
+            
             if(plat && catIdx !== "") {
                 currentSmmServices = smmDataCache[plat][catIdx].services; 
                 currentSmmServices.forEach((s, idx) => { srvSel.innerHTML += `<option value="${idx}">${s.name}</option>`; });
@@ -406,6 +391,9 @@
 
         function updateSMMDetails() {
             const sel = document.getElementById('smm-service'); const box = document.getElementById('smm-detail-content');
+            const exBox = document.getElementById('smm-link-example'); const exText = document.getElementById('smm-link-example-text');
+            const cmtBox = document.getElementById('smm-comments-container'); const qtyInput = document.getElementById('smm-qty');
+            
             if(sel.selectedIndex > 0) {
                 const s = currentSmmServices[sel.selectedIndex - 1]; 
                 let formattedDesc = s.desc ? s.desc.replace(/\r\n|\r|\n/g, '<br>') : 'ไม่มีรายละเอียดเพิ่มเติมค่ะ';
@@ -424,8 +412,30 @@
                         <span class="font-bold text-purple-600 block mb-2 border-b border-purple-50 pb-1"><i class="fa-solid fa-circle-info mr-1"></i> ข้อมูลบริการ:</span>
                         <div class="text-gray-600 leading-relaxed text-xs">${formattedDesc}</div>
                     </div>`;
-                box.innerHTML = html; calculateSMMPrice();
-            } else { box.innerHTML = ''; document.getElementById('smm-price').innerText = '0.00'; }
+                box.innerHTML = html; 
+                
+                // จัดการแสดงตัวอย่างลิงก์
+                if(s.example && s.example !== 'ไม่มีตัวอย่างลิงก์') {
+                    exText.innerText = s.example; exBox.classList.remove('hidden');
+                } else exBox.classList.add('hidden');
+                
+                // จัดการแสดงกล่องคอมเมนต์
+                if(s.type === 'comment') {
+                    cmtBox.classList.remove('hidden'); qtyInput.setAttribute('readonly', 'true'); qtyInput.classList.add('bg-pink-50', 'text-pink-500'); qtyInput.value = '';
+                } else {
+                    cmtBox.classList.add('hidden'); qtyInput.removeAttribute('readonly'); qtyInput.classList.remove('bg-pink-50', 'text-pink-500');
+                }
+                
+                calculateSMMPrice();
+            } else { box.innerHTML = ''; document.getElementById('smm-price').innerText = '0.00'; exBox.classList.add('hidden'); cmtBox.classList.add('hidden'); }
+        }
+
+        // นับจำนวนบรรทัดของคอมเมนต์อัตโนมัติ
+        function updateCommentQty() {
+            const text = document.getElementById('smm-comments').value;
+            const lines = text.split('\n').filter(line => line.trim() !== '');
+            document.getElementById('smm-qty').value = lines.length;
+            calculateSMMPrice();
         }
 
         function calculateSMMPrice() {
@@ -445,11 +455,20 @@
             if(qty < s.min || qty > s.max) return showAlert('จำนวนยอดไม่ถูกต้อง', `บริการนี้รองรับตั้งแต่ ${s.min} - ${s.max} ค่ะ ลองแก้ตัวเลขดูนะคะ`, 'error');
             if(currentUser.credit < price) return showAlert('เครดิตไม่พอ', 'ยอดเงินไม่พอค่ะ รบกวนเติมเงินก่อนน้า', 'error');
             
-            const res = await fetchGAS({ action: 'order_smm', username: currentUser.username, service_id: serviceId, link: link, quantity: qty, price: price });
-            if(res && res.status === 'success') { showAlert('สำเร็จแล้ว!', res.message, 'success'); document.getElementById('smm-link').value = ''; document.getElementById('smm-qty').value = ''; loadDashboard(); } else if(res) showAlert('ผิดพลาด', res.message, 'error');
+            // เตรียม Payload (มีข้อความคอมเมนต์ด้วยถ้ามี)
+            let payload = { action: 'order_smm', username: currentUser.username, service_id: serviceId, link: link, quantity: qty, price: price };
+            if(s.type === 'comment') {
+                let cmt = document.getElementById('smm-comments').value;
+                if(cmt.trim() === '') return showAlert('ข้อมูลไม่ครบ', 'รบกวนพิมพ์ข้อความที่ต้องการคอมเมนต์ด้วยนะคะ', 'error');
+                payload.comments = cmt;
+            }
+
+            const res = await fetchGAS(payload);
+            if(res && res.status === 'success') { 
+                showAlert('สำเร็จแล้ว!', res.message, 'success'); document.getElementById('smm-link').value = ''; document.getElementById('smm-qty').value = ''; document.getElementById('smm-comments').value = ''; loadDashboard(); 
+            } else if(res) showAlert('ผิดพลาด', res.message, 'error');
         }
 
-        // ================= ประวัติและกล่องข้อความ ================= //
         async function openFullHistory() {
             const res = await fetchGAS({ action: 'get_full_history', username: currentUser.username });
             if(res && res.status === 'success') {
@@ -494,7 +513,7 @@
             const reader = new FileReader();
             reader.onload = async function() {
                 const res = await fetchGAS({ action: 'topup', username: currentUser.username, amount: amt, ref_code: ref, file: reader.result });
-                if(res && res.status === 'success') { closeAllModals(); showAlert('ส่งสลิปสำเร็จ!', res.message, 'success'); } else if(res) showAlert('ผิดพลาด', res.message, 'error');
+                if(res && res.status === 'success') { closeAllModals(); showAlert('ส่งสลิปสำเร็จ!', res.message, 'success'); document.getElementById('topup-amount').value=''; document.getElementById('topup-ref').value=''; document.getElementById('topup-file').value='';} else if(res) showAlert('ผิดพลาด', res.message, 'error');
             }; reader.readAsDataURL(file);
         }
 
@@ -516,12 +535,12 @@
 
         async function submitAdminApp() {
             const res = await fetchGAS({ action: 'admin_add_product', type: 'app', name: document.getElementById('add-app-name').value, category: 'แอพพรีเมียม', image: document.getElementById('add-app-img').value, price: document.getElementById('add-app-price').value, desc: document.getElementById('add-app-desc').value });
-            if(res && res.status==='success') { showAlert('เรียบร้อย', res.message, 'success'); loadProducts(); }
+            if(res && res.status==='success') { showAlert('เรียบร้อย', res.message, 'success'); document.getElementById('add-app-name').value=''; document.getElementById('add-app-img').value=''; document.getElementById('add-app-price').value=''; document.getElementById('add-app-desc').value=''; loadProducts(); }
         }
 
         async function submitAdminGame() {
             const res = await fetchGAS({ action: 'admin_add_product', type: 'game', name: document.getElementById('add-game-cat').value, category: 'เติมเกม', image: document.getElementById('add-game-img').value, price: document.getElementById('add-game-price').value, quantity_val: document.getElementById('add-game-qty').value, quantity_unit: document.getElementById('add-game-unit').value, desc: document.getElementById('add-game-desc').value });
-            if(res && res.status==='success') { showAlert('เรียบร้อย', res.message, 'success'); loadProducts(); }
+            if(res && res.status==='success') { showAlert('เรียบร้อย', res.message, 'success'); document.getElementById('add-game-cat').value=''; document.getElementById('add-game-img').value=''; document.getElementById('add-game-price').value=''; document.getElementById('add-game-qty').value=''; document.getElementById('add-game-desc').value=''; loadProducts(); }
         }
 
         async function submitAdminStock() {
@@ -535,7 +554,7 @@
             const user = document.getElementById('admin-msg-user').value, title = document.getElementById('admin-msg-title').value, detail = document.getElementById('admin-msg-detail').value;
             if(!user || !title || !detail) return showAlert('ข้อมูลไม่ครบ', 'กรุณากรอกข้อมูลให้ครบทุกช่องนะคะ', 'error');
             const res = await fetchGAS({ action: 'admin_send_message', target_user: user, title: title, detail: detail });
-            if(res && res.status === 'success') { showAlert('เรียบร้อย', res.message, 'success'); document.getElementById('admin-msg-title').value = ''; document.getElementById('admin-msg-detail').value = ''; } else if(res) showAlert('ผิดพลาด', res.message, 'error');
+            if(res && res.status === 'success') { showAlert('เรียบร้อย', res.message, 'success'); document.getElementById('admin-msg-user').value=''; document.getElementById('admin-msg-title').value = ''; document.getElementById('admin-msg-detail').value = ''; } else if(res) showAlert('ผิดพลาด', res.message, 'error');
         }
 
         window.onload = checkLoginState;
