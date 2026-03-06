@@ -11,7 +11,11 @@
         body { font-family: 'Kanit', sans-serif; background: #FFF5F8; min-height: 100vh; color: #4A4A4A; }
         .fade-in { animation: fadeIn 0.4s ease-out; }
         @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
-        .page { display: none; } .page.active { display: block; }
+        
+        /* แก้ปัญหาหน้าซ้อนกันแบบเด็ดขาด */
+        .page { display: none !important; } 
+        .page.active { display: block !important; }
+        
         ::-webkit-scrollbar { width: 6px; } ::-webkit-scrollbar-thumb { background: #FFB6C1; border-radius: 10px; }
         .cute-card { background: white; border-radius: 1.5rem; box-shadow: 0 4px 15px rgba(255, 182, 193, 0.2); }
         .cute-input { width: 100%; background: #FFF9FA; border: 2px solid #FFE4E1; border-radius: 1rem; padding: 0.75rem 1rem; outline: none; transition: 0.3s; }
@@ -53,11 +57,13 @@
 
     <div class="max-w-7xl mx-auto px-4 py-4 pb-20">
         
-        <div id="page-guest" class="page active fade-in flex flex-col items-center justify-center pt-10 text-center">
-            <i class="fa-solid fa-store text-6xl text-pink-300 mb-4"></i>
-            <h1 class="text-4xl font-bold text-gray-800 mb-4">บริการแอปพรีเมียม <span class="text-pink-500">สุดคุ้ม</span></h1>
-            <p class="text-gray-500 mb-8 max-w-md">ระบบอัตโนมัติ 24 ชม. เติมเกม เพิ่มผู้ติดตาม ราคาถูกที่สุดในตลาด</p>
-            <button onclick="showModal('register-modal')" class="btn-pink px-8 py-3 text-lg w-full max-w-xs">เริ่มต้นใช้งานฟรี</button>
+        <div id="page-guest" class="page active fade-in">
+            <div class="flex flex-col items-center justify-center pt-10 text-center">
+                <i class="fa-solid fa-store text-6xl text-pink-300 mb-4"></i>
+                <h1 class="text-4xl font-bold text-gray-800 mb-4">บริการแอปพรีเมียม <span class="text-pink-500">สุดคุ้ม</span></h1>
+                <p class="text-gray-500 mb-8 max-w-md">ระบบอัตโนมัติ 24 ชม. เติมเกม เพิ่มผู้ติดตาม ราคาถูกที่สุดในตลาด</p>
+                <button onclick="showModal('register-modal')" class="btn-pink px-8 py-3 text-lg w-full max-w-xs">เริ่มต้นใช้งานฟรี</button>
+            </div>
         </div>
 
         <div id="page-dashboard" class="page fade-in">
@@ -268,8 +274,9 @@
     </div>
 
     <script>
-        // *** ใส่ URL ของ Google Apps Script ที่ Deploy ใหม่ล่าสุด ***
-        const API_URL = "https://script.google.com/macros/s/AKfycbwk4oivZM_oX9ua2cHSwIsXP8NNzI4cG0wdd9sW_JHeK7DQEJDdqjuTJyuAJuhc4xmI3Q/exec"; 
+        // *** ใส่ URL ของ Google Apps Script ของคุณที่นี่ ***
+        const API_URL = "YOUR_NEW_WEB_APP_URL"; 
+        
         let currentUser = null;
         let smmDataCache = null; 
         let productsCache = [];
@@ -454,10 +461,10 @@
                     
                     let buyBtn = p.type === 'game' 
                         ? `<button onclick="openGameModal('${p.name}', '${p.quantity_val} ${p.quantity_unit}', ${p.price})" class="w-full btn-pink py-2 text-sm">เติมเกมนี้ ${p.price}฿</button>`
-                        : `<button class="w-full bg-purple-500 text-white font-bold py-2 rounded-full text-sm hover:bg-purple-600 transition shadow-md">ซื้อเลย ${p.price}฿</button>`; // ในอนาคตต่อยอดการตัดสต็อกแอปได้ที่นี่
+                        : `<button class="w-full bg-purple-500 text-white font-bold py-2 rounded-full text-sm hover:bg-purple-600 transition shadow-md">ซื้อเลย ${p.price}฿</button>`;
 
                     grid.innerHTML += `
-                        <div class="cute-card overflow-hidden bounce-soft text-center p-4">
+                        <div class="cute-card overflow-hidden bounce-soft text-center p-4 border border-pink-50">
                             <img src="${p.image || 'https://via.placeholder.com/150'}" class="w-20 h-20 mx-auto rounded-2xl mb-3 object-cover shadow-sm">
                             <div class="text-xs text-pink-500 font-bold mb-1">${p.category}</div>
                             <div class="font-bold text-gray-700 truncate mb-1">${p.name}</div>
@@ -490,7 +497,6 @@
             document.querySelectorAll('.admin-tab').forEach(el => el.classList.remove('active'));
             document.getElementById(`admin-tab-${tab}`).classList.add('active');
             
-            // Switch button colors
             const btns = document.querySelectorAll('#page-admin button[onclick^="switchAdminTab"]');
             btns.forEach(b => { b.className = "px-4 py-2 bg-gray-100 text-gray-500 font-bold rounded-t-xl hover:bg-gray-200"; });
             event.currentTarget.className = "px-4 py-2 bg-purple-100 text-purple-700 font-bold rounded-t-xl";
