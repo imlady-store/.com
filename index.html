@@ -170,7 +170,7 @@
                         <i class="fa-solid fa-envelope text-pink-400 mr-2"></i> ข้อความ
                     </button>
                     <button class="flex-1 md:flex-none bg-green-50 border border-green-200 text-green-600 px-4 py-2 rounded-xl font-medium hover:bg-green-100 flex items-center justify-center">
-                        <i class="fa-brands fa-line text-lg mr-2"></i> แอดมิน
+                        <i class="fa-solid fa-headset text-lg mr-2"></i> แอดมิน
                     </button>
                 </div>
             </div>
@@ -285,7 +285,7 @@
                         <p><i class="fa-solid fa-ban text-gray-400"></i> ห้ามเปลี่ยนชื่อผู้ใช้ระหว่างทำรายการ</p>
                         <p><i class="fa-solid fa-clock text-gray-400"></i> รอให้ออเดอร์แรกเสร็จก่อนสั่งลิงก์เดิมซ้ำ</p>
                         <hr class="border-pink-50">
-                        <p class="text-xs text-gray-500">หากใส่ลิงก์ผิดระบบจะไม่สามารถคืนเงินได้ โปรดตรวจสอบให้แน่ใจก่อนกดสั่งซื้อนะคะ 🎀</p>
+                        <p class="text-xs text-gray-500">หากใส่ลิงก์ผิดระบบจะไม่สามารถคืนเงินได้ โปรดตรวจสอบให้แน่ใจก่อนกดสั่งซื้อนะคะ</p>
                     </div>
                 </div>
             </div>
@@ -355,7 +355,7 @@
         </div>
     </div>
 
-    <div id="login-modal" class="fixed inset-0 bg-black/40 backdrop-blur-sm flex items-center justify-center hidden z-[80] p-4">
+    <div id="login-modal" class="modal-container fixed inset-0 bg-black/40 backdrop-blur-sm flex items-center justify-center hidden z-[80] p-4">
         <div class="bg-white p-8 rounded-[2rem] w-full max-w-sm shadow-2xl relative">
             <button onclick="hideModal('login-modal')" class="absolute top-4 right-5 text-gray-400 hover:text-pink-500 text-xl"><i class="fa-solid fa-xmark"></i></button>
             <div class="w-16 h-16 bg-pink-100 rounded-full flex items-center justify-center mx-auto mb-4">
@@ -371,22 +371,42 @@
         </div>
     </div>
 
-    <div id="register-modal" class="fixed inset-0 bg-black/40 backdrop-blur-sm flex items-center justify-center hidden z-[80] p-4">
-        <div class="bg-white p-8 rounded-[2rem] w-full max-w-sm shadow-2xl relative">
+    <div id="register-modal" class="modal-container fixed inset-0 bg-black/40 backdrop-blur-sm flex items-center justify-center hidden z-[80] p-4">
+        <div class="bg-white p-8 rounded-[2rem] w-full max-w-md shadow-2xl relative max-h-[90vh] overflow-y-auto">
             <button onclick="hideModal('register-modal')" class="absolute top-4 right-5 text-gray-400 hover:text-pink-500 text-xl"><i class="fa-solid fa-xmark"></i></button>
-            <div class="w-16 h-16 bg-pink-100 rounded-full flex items-center justify-center mx-auto mb-4">
+            <div class="w-16 h-16 bg-pink-100 rounded-full flex items-center justify-center mx-auto mb-4 mt-2">
                 <i class="fa-solid fa-user-plus text-2xl text-pink-500"></i>
             </div>
             <h3 class="text-2xl font-bold mb-6 text-center text-gray-800">สร้างบัญชีใหม่</h3>
             <div class="space-y-4 mb-6">
-                <input type="text" id="reg-user" class="cute-input bg-gray-50" placeholder="ตั้งชื่อผู้ใช้งาน (ภาษาอังกฤษ/ตัวเลข)">
-                <input type="password" id="reg-pass" class="cute-input bg-gray-50" placeholder="ตั้งรหัสผ่าน">
+                <div>
+                    <label class="block text-sm text-gray-600 mb-1 ml-1 font-medium">ชื่อผู้ใช้งาน</label>
+                    <input type="text" id="reg-user" class="cute-input bg-gray-50" placeholder="ภาษาอังกฤษหรือตัวเลข">
+                </div>
+                <div>
+                    <label class="block text-sm text-gray-600 mb-1 ml-1 font-medium">อีเมล (Email)</label>
+                    <input type="email" id="reg-email" class="cute-input bg-gray-50" placeholder="example@email.com">
+                </div>
+                <div>
+                    <label class="block text-sm text-gray-600 mb-1 ml-1 font-medium">เบอร์โทรศัพท์</label>
+                    <input type="tel" id="reg-phone" class="cute-input bg-gray-50" placeholder="08x-xxx-xxxx">
+                </div>
+                <div class="grid grid-cols-2 gap-3">
+                    <div>
+                        <label class="block text-sm text-gray-600 mb-1 ml-1 font-medium">รหัสผ่าน</label>
+                        <input type="password" id="reg-pass" class="cute-input bg-gray-50" placeholder="ตั้งรหัสผ่าน">
+                    </div>
+                    <div>
+                        <label class="block text-sm text-gray-600 mb-1 ml-1 font-medium">ยืนยันรหัสผ่าน</label>
+                        <input type="password" id="reg-pass-confirm" class="cute-input bg-gray-50" placeholder="พิมพ์อีกครั้ง">
+                    </div>
+                </div>
             </div>
             <button onclick="submitRegister()" class="w-full btn-pink py-3 font-bold text-lg">สมัครสมาชิก</button>
         </div>
     </div>
 
-    <div id="topup-modal" class="fixed inset-0 bg-black/40 backdrop-blur-sm flex items-center justify-center hidden z-[80] p-4">
+    <div id="topup-modal" class="modal-container fixed inset-0 bg-black/40 backdrop-blur-sm flex items-center justify-center hidden z-[80] p-4">
         <div class="bg-white p-8 rounded-[2rem] w-full max-w-sm shadow-2xl relative">
             <button onclick="hideModal('topup-modal')" class="absolute top-4 right-5 text-gray-400 hover:text-pink-500 text-xl"><i class="fa-solid fa-xmark"></i></button>
             <h3 class="text-xl font-bold mb-4 text-center text-gray-800"><i class="fa-solid fa-money-bill-transfer text-pink-400 mr-2"></i> แจ้งโอนเงิน / เติมเครดิต</h3>
@@ -416,12 +436,11 @@
     </div>
 
     <script>
-        // *** ตั้งค่า URL ของ Google Apps Script ที่ Deploy เสร็จแล้วตรงนี้ ***
+        // *** เปลี่ยนเป็น URL ของ Google Apps Script ที่ Deploy ใหม่ล่าสุด ***
         const API_URL = "https://script.google.com/macros/s/AKfycbwk4oivZM_oX9ua2cHSwIsXP8NNzI4cG0wdd9sW_JHeK7DQEJDdqjuTJyuAJuhc4xmI3Q/exec"; 
         
         let currentUser = null;
 
-        // ฐานข้อมูลหมวดหมู่ SMM จำลองเพื่อให้ใช้งานหน้าเว็บได้ทันที (แอดมินแก้ไขราคาใน Sheet ได้)
         const smmDatabase = {
             tiktok: [
                 { id: "16789", name: "กดหัวใจ TikTok [โปรโมชัน]", rate: 15 },
@@ -462,6 +481,12 @@
         function showModal(id) { document.getElementById(id).classList.remove('hidden'); }
         function hideModal(id) { document.getElementById(id).classList.add('hidden'); }
         
+        // ฟังก์ชันใหม่: ปิด Modal ทั้งหมด เพื่อป้องกันการค้างหน้าจอ
+        function closeAllModals() {
+            document.querySelectorAll('.modal-container').forEach(el => el.classList.add('hidden'));
+            hideModal('loading-modal');
+        }
+        
         function showAlert(title, message, type = 'info') {
             document.getElementById('alert-title').innerText = title;
             document.getElementById('alert-message').innerText = message;
@@ -476,11 +501,10 @@
 
         // --- Navigation ---
         function navigate(pageId) {
-            // Hide all pages
+            closeAllModals(); // ดักจับการปิด Modal ทุกครั้งที่เปลี่ยนหน้า
             document.querySelectorAll('.page').forEach(el => el.classList.remove('active'));
             document.getElementById('page-' + pageId).classList.add('active');
             
-            // Update menu visual
             if (pageId !== 'guest') {
                 document.querySelectorAll('.menu-btn').forEach(btn => {
                     btn.classList.remove('active', 'text-pink-600', 'bg-pink-100');
@@ -502,7 +526,6 @@
                 document.getElementById('nav-user').classList.remove('hidden');
                 document.getElementById('main-menu').classList.remove('hidden');
                 
-                // Show Admin Menu if role is admin
                 if(currentUser.role === 'admin') {
                     document.getElementById('menu-admin').classList.remove('hidden');
                 }
@@ -510,8 +533,8 @@
                 document.getElementById('nav-credit').innerText = currentUser.credit.toFixed(2);
                 document.getElementById('dash-username').innerText = currentUser.username;
                 
+                closeAllModals(); // บังคับปิด Modal ที่ค้างอยู่
                 navigate('dashboard');
-                // อัปเดตข้อมูลอัตโนมัติทุกๆ 3 นาที
                 setInterval(loadDashboard, 180000); 
             } else {
                 logout(false);
@@ -536,7 +559,7 @@
                     credit: res.user.credit,
                     role: res.user.role
                 }));
-                hideModal('login-modal');
+                closeAllModals(); // บังคับปิด Modal แบบเด็ดขาด
                 checkLoginState();
             } else if(res) {
                 showAlert('อุ๊ปส์!', res.message, 'error');
@@ -545,16 +568,26 @@
 
         async function submitRegister() {
             const u = document.getElementById('reg-user').value;
+            const e = document.getElementById('reg-email').value;
+            const ph = document.getElementById('reg-phone').value;
             const p = document.getElementById('reg-pass').value;
-            if(!u || !p) return showAlert('ผิดพลาด', 'กรุณากรอกข้อมูลให้ครบถ้วนนะคะ', 'error');
+            const pc = document.getElementById('reg-pass-confirm').value;
+
+            if(!u || !e || !ph || !p || !pc) return showAlert('ผิดพลาด', 'กรุณากรอกข้อมูลให้ครบทุกช่องนะคะ', 'error');
+            if(p !== pc) return showAlert('ผิดพลาด', 'รหัสผ่านทั้งสองช่องไม่ตรงกันค่ะ โปรดตรวจสอบอีกครั้ง', 'error');
             
-            const res = await fetchGAS({ action: 'register', username: u, password: p });
+            const res = await fetchGAS({ action: 'register', username: u, email: e, phone: ph, password: p });
             if(res && res.status === 'success') {
-                hideModal('register-modal');
+                closeAllModals();
                 showAlert('สำเร็จแล้ว!', res.message, 'success');
+                
                 // ล้างค่าฟอร์ม
                 document.getElementById('reg-user').value = '';
+                document.getElementById('reg-email').value = '';
+                document.getElementById('reg-phone').value = '';
                 document.getElementById('reg-pass').value = '';
+                document.getElementById('reg-pass-confirm').value = '';
+                
                 // เปิดหน้าล็อกอินต่อ
                 setTimeout(() => showModal('login-modal'), 1500);
             } else if(res) {
@@ -567,18 +600,15 @@
             if (!currentUser) return;
             const res = await fetchGAS({ action: 'get_dashboard', username: currentUser.username });
             if (res && res.status === 'success') {
-                // Update UI Stats
                 document.getElementById('dash-credit').innerText = res.stats.balance.toFixed(2);
                 document.getElementById('nav-credit').innerText = res.stats.balance.toFixed(2);
                 document.getElementById('dash-users').innerText = res.stats.total_users;
                 document.getElementById('dash-all-orders').innerText = res.stats.total_orders;
                 
-                // Update Session
                 currentUser.credit = res.stats.balance;
                 currentUser.role = res.role;
                 localStorage.setItem('imlady_session', JSON.stringify(currentUser));
                 
-                // Update History Table
                 const tbody = document.getElementById('history-table');
                 tbody.innerHTML = '';
                 if(res.history.length === 0) {
@@ -625,7 +655,7 @@
                     file: base64Data
                 });
                 if(res && res.status === 'success') {
-                    hideModal('topup-modal');
+                    closeAllModals();
                     showAlert('ส่งสลิปสำเร็จ!', res.message, 'success');
                     document.getElementById('topup-amount').value = '';
                     document.getElementById('topup-ref').value = '';
@@ -659,7 +689,6 @@
             
             if (selectService.selectedIndex > 0 && qty > 0) {
                 const rate = selectService.options[selectService.selectedIndex].getAttribute('data-rate');
-                // สมมติว่า rate คือราคาต่อ 1000 ออเดอร์
                 const price = (rate / 1000) * qty;
                 document.getElementById('smm-price').innerText = price.toFixed(2);
             } else {
@@ -690,7 +719,6 @@
 
             if(res && res.status === 'success') {
                 showAlert('สำเร็จแล้ว!', res.message, 'success');
-                // ล้างฟอร์ม
                 document.getElementById('smm-link').value = '';
                 document.getElementById('smm-qty').value = '';
                 document.getElementById('smm-price').innerText = '0.00';
@@ -724,7 +752,6 @@
             }
         }
 
-        // --- Initialize ---
         window.onload = checkLoginState;
     </script>
 </body>
